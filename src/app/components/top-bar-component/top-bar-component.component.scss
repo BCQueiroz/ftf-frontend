@@ -1,0 +1,55 @@
+$height-param: 20vh;
+
+.topnav {
+    background-color: #E6E9EF;
+    overflow: hidden;
+    height: $height-param;
+    width: 100%;
+}
+
+.topnav a:hover {
+    background-color: #C6B9B9;
+    color: #F87C56;
+}
+
+.topnav a.active {
+    background-color: #C6B9B9;
+    color: #000000;
+}
+
+.title-project {
+    float: left;
+    color: #F87C56;
+    text-align: center;
+    text-decoration: none;
+    height: $height-param;
+    width: 24%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-size: 45px;
+    font-family: serif;
+}
+
+.title-pages {
+    float: left;
+    color: #000000;
+    text-align: center;
+    text-decoration: none;
+    height: $height-param;
+    width: 19%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 24px;
+    font-family: serif;
+}
+
+.span-icons {
+    font-size: 20px;
+}
+
+.span-project-name{
+    font-size: 30px;
+}
