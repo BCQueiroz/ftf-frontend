@@ -1,16 +1,52 @@
 <div class="container">
     <div class="section-left">
-        <div class="period-section">
-            <div class="period-description"><span>Período do Dia:</span></div>
-            <div class="period-selector">
-                <select name="selectPeriod" (change)="onPeriodSelectorChange($event)">
+        <div class="option-section">
+            <div class="option-description"><span>Período do Dia:</span></div>
+            <div class="option-selector">
+                <select name="selectPeriod" id="period" (change)="onPeriodSelectorChange($event)">
                     @for (period of periodOptions; track $index) {
                         <option [value]="period.value">{{ period.label }}</option>
                     }
                 </select>
             </div>
-            <div class="period-info">
+            <div class="option-info">
                 <span><i class="fa-solid fa-circle-info"></i></span>
+            </div>
+        </div>
+        <div class="option-section">
+            <div class="option-description"><span>Cidade:</span></div>
+            <div class="option-selector">
+                <select name="selectCity" id="city" (change)="onCitySelectedChange($event)">
+                    @for (city of cityList; track $index) {
+                        <option [value]="city.id_city">{{ city.nm_city }}</option>
+                    }
+                </select>
+            </div>
+            <div class="option-info">
+                <span><i class="fa-solid fa-circle-info"></i></span>
+            </div>
+        </div>
+        <div class="option-section">
+            <div class="tag-description"><span>Tags Desejadas: </span></div>
+            <div class="tag-button">
+                <button>
+                    <span>Limpar Tags   <i class="fa-solid fa-trash tag-image"></i></span>
+                </button>
+            </div>
+            <div class="tag-button">
+                <button (click)="openTagListModal()">
+                    <span>Nova Tag   <i class="fa-solid fa-plus tag-image"></i></span>
+                </button>
+            </div>
+            <div class="tag-info">
+                <span><i class="fa-solid fa-circle-info"></i></span>
+            </div>
+        </div>
+        <div class="tag-section">
+            <div class="rectangle">
+                @for (tag of tagsSelected; track $index) {
+                    <button (click)="onTagSelectedClick(tag)">{{ tag.nm_tag }}</button>
+                }
             </div>
         </div>
     </div>
