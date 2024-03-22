@@ -6,7 +6,7 @@
 
 .section-left, .section-right {
   flex: 1; 
-  padding: 25px; 
+  //padding: 25px; 
 }
 
 .section-left {
@@ -20,10 +20,11 @@
 }
 
 .option-section {
-    width: 100%; 
+    width: 95%; 
     display: flex; 
     flex-direction: row;
     height: 15%;
+    margin-left: 5%;
 }
 
 .option-description {
@@ -59,9 +60,10 @@
 
 .tag-section {
     height: 40%;
-    width: 100%; 
+    width: 95%; 
     display: flex; 
     flex-direction: row;
+    margin-left: 5%;
 }
 
 .tag-description {
@@ -92,9 +94,27 @@
     justify-content: center;
 }
 
+.sub-section {
+    width: 95%; 
+    display: flex; 
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-end;
+    height: 15%;
+    margin-left: 5%;
+}
+
+.sub-button {
+    font-size: 18px;
+    width: 30%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
 .rectangle {
-    width: 600px;
-    height: 200px;
+    width: 95%;
+    height: 100%;
     border: 1px #D9D9D9;
     display: flex;
     justify-content: center;
@@ -107,7 +127,7 @@
 }
 
 .rectangle button {
-    flex-basis: calc(20% - 10px);
+    flex-basis: calc(30% - 10px);
     margin-bottom: 5px;
 }
 

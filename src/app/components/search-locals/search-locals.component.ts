@@ -22,8 +22,8 @@ export class SearchLocalsComponent implements OnInit{
   ];
 
   tagsSelected = [
-    { id_tag: 1, nm_tag: "Chopperia" },
-    { id_tag: 2, nm_tag: "Música ao vivo"}
+    { id_tag: 1, nm_tag: "Chopperia", color_tag: "#e6b927" },
+    { id_tag: 2, nm_tag: "Música ao vivo", color_tag: "#a0a3a1"}
   ]
 
   ngOnInit(): void {
@@ -51,7 +51,19 @@ export class SearchLocalsComponent implements OnInit{
   }
 
   openTagListModal() {
-    this.tagsSelected.push({id_tag: -1, nm_tag: "Hamburgueria"})
+    this.tagsSelected.push({id_tag: -1, nm_tag: "Hamburgueria", color_tag: "#065e2e"})
+  }
+
+  clearTags(){
+    this.tagsSelected = []
+  }
+
+  clearFilters(){
+    this.clearTags()
+  }
+
+  searchLocals(){
+    console.log("Pesquisando locais - teste.")
   }
 
 }

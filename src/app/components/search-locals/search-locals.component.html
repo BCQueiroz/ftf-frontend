@@ -29,7 +29,7 @@
         <div class="option-section">
             <div class="tag-description"><span>Tags Desejadas: </span></div>
             <div class="tag-button">
-                <button>
+                <button (click)="clearTags()">
                     <span>Limpar Tags   <i class="fa-solid fa-trash tag-image"></i></span>
                 </button>
             </div>
@@ -45,8 +45,18 @@
         <div class="tag-section">
             <div class="rectangle">
                 @for (tag of tagsSelected; track $index) {
-                    <button (click)="onTagSelectedClick(tag)">{{ tag.nm_tag }}</button>
+                    <button [style.background-color]="tag.color_tag" 
+                        (click)="onTagSelectedClick(tag)">{{ tag.nm_tag }} <span><i class="fa-solid fa-x tag-image"></i></span>
+                    </button>
                 }
+            </div>
+        </div>
+        <div class="sub-section">
+            <div class="sub-button">
+                <button (click)="clearFilters()"><span>Limpar Campos  <i class="fa-solid fa-trash tag-image"></i></span></button>
+            </div>
+            <div class="sub-button">
+                <button (click)="searchLocals()"><span>Procurar <i class="fa-solid fa-magnifying-glass-location tag-image"></i></span></button>
             </div>
         </div>
     </div>
