@@ -21,9 +21,18 @@ export class SearchLocalsComponent implements OnInit{
     { label: 'Noite (18:01 - 00:00)', value: '4' }
   ];
 
-  tagsSelected = [
-    { id_tag: 1, nm_tag: "Chopperia", color_tag: "#e6b927" },
-    { id_tag: 2, nm_tag: "Música ao vivo", color_tag: "#a0a3a1"}
+  tagsSelected = new Map()
+
+  totalResults = 3
+
+  locals = [
+    { id_local: 1, nm_local: "Teste 1", ds_adress: "Endereço Teste 1", ds_working_timeshift: "18:00 - 00:00" },
+    { id_local: 1, nm_local: "Teste 1", ds_adress: "Endereço Teste 1", ds_working_timeshift: "18:00 - 00:00" },
+    { id_local: 1, nm_local: "Teste 1", ds_adress: "Endereço Teste 1", ds_working_timeshift: "18:00 - 00:00" },
+    { id_local: 1, nm_local: "Teste 1", ds_adress: "Endereço Teste 1", ds_working_timeshift: "18:00 - 00:00" },
+    { id_local: 1, nm_local: "Teste 1", ds_adress: "Endereço Teste 1", ds_working_timeshift: "18:00 - 00:00" },
+    { id_local: 1, nm_local: "Teste 1", ds_adress: "Endereço Teste 1", ds_working_timeshift: "18:00 - 00:00" },
+    { id_local: 2, nm_local: "Teste 2", ds_adress: "Endereço Teste 2", ds_working_timeshift: "19:30 - 02:00" }
   ]
 
   ngOnInit(): void {
@@ -34,6 +43,9 @@ export class SearchLocalsComponent implements OnInit{
       {
         id_city: 2, nm_city: "São Vicente"
       }]
+
+      this.tagsSelected.set(1, { id_tag: 1, nm_tag: "Chopperia", color_tag: "#e6b927" })
+      this.tagsSelected.set(2, { id_tag: 2, nm_tag: "Música ao vivo", color_tag: "#a0a3a1"})
   }
 
   onPeriodSelectorChange(event: Event) {
@@ -47,15 +59,16 @@ export class SearchLocalsComponent implements OnInit{
   }
 
   onTagSelectedClick(event: any) {
-    console.log("Exclusão de tag- teste.")
+    if(event && event.id_tag)
+    this.tagsSelected.delete(event.id_tag)
   }
 
   openTagListModal() {
-    this.tagsSelected.push({id_tag: -1, nm_tag: "Hamburgueria", color_tag: "#065e2e"})
+    this.tagsSelected.set(3, {id_tag: 3, nm_tag: "Hamburgueria", color_tag: "#065e2e"})
   }
 
   clearTags(){
-    this.tagsSelected = []
+    this.tagsSelected.clear()
   }
 
   clearFilters(){
@@ -64,6 +77,14 @@ export class SearchLocalsComponent implements OnInit{
 
   searchLocals(){
     console.log("Pesquisando locais - teste.")
+  }
+
+  getLocalAdditionalInfo(){
+    console.log("Procurando informações adicionais - teste.")
+  }
+
+  saveLocalInUserFavorites() {
+    console.log("Salvando local na lista de favoritos do usuário - teste.")
   }
 
 }

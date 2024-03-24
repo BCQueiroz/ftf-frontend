@@ -11,12 +11,13 @@
 
 .section-left {
   background-color: #E6E9EF;
-  border-right: 3px solid #ccc;
+  border-right: 1px solid;
   height: 100%;
 }
 
 .section-right {
   background-color: #E6E9EF;
+  height: 100%;
 }
 
 .option-section {
@@ -50,6 +51,10 @@
     justify-content: center;
 }
 
+.option-info span {
+    cursor: pointer;
+}
+
 .option-span-button {
     font-size: 18px;
     width: 23%;
@@ -59,7 +64,7 @@
 }
 
 .tag-section {
-    height: 40%;
+    height: 35%;
     width: 95%; 
     display: flex; 
     flex-direction: row;
@@ -82,6 +87,10 @@
     justify-content: center;
 }
 
+.tag-button button {
+    cursor: pointer;
+}
+
 .tag-image {
     font-size: 15px;
 }
@@ -92,6 +101,31 @@
     display: flex;
     align-items: center;
     justify-content: center;
+}
+
+.tag-info span {
+    cursor: pointer;
+}
+
+.tag-list-container {
+    width: 95%;
+    height: 100%;
+    border: 1px #D9D9D9;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px;
+    overflow: auto;
+    border-radius: 10px;
+    background-color: #D9D9D9;
+}
+
+.tag-list-container button {
+    flex-basis: calc(30% - 10px);
+    margin-bottom: 5px;
+    cursor: pointer;
+
 }
 
 .sub-section {
@@ -112,23 +146,79 @@
     justify-content: center;
 }
 
-.rectangle {
-    width: 95%;
-    height: 100%;
-    border: 1px #D9D9D9;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-wrap: wrap;
-    gap: 10px;
-    overflow: auto;
-    border-radius: 10px;
-    background-color: #D9D9D9;
+.sub-button button {
+    cursor: pointer;
 }
 
-.rectangle button {
-    flex-basis: calc(30% - 10px);
-    margin-bottom: 5px;
+.total-section {
+    width: 100%;
+    border-bottom: 1px solid ;
+    height: 10%;
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
+}
+
+.total-section-result {
+    width: 70%;
+    padding: 0% 0% 0% 2%;
+    align-items: center;
+    display: flex;
+    justify-content: flex-start;
+}
+
+.total-section-info {
+    width: 30%;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    padding: 0% 2% 0% 0%;
+}
+
+.total-section-info span {
+    cursor: pointer;
+}
+
+.itens-section {
+    height: 80%;
+    overflow: auto;
+    display: flex;
+    flex-direction: column;
+}
+
+.local-info-section {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    border-bottom: 1px solid;
+}
+
+.local-general-info {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 75%;
+    padding: 3% 2% 3% 2%;
+}
+
+.local-general-info span {
+    margin: 0 0 1% 0;
+}
+
+.local-options {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    width: 25%;
+    border-left: 1px solid;
+    height: 100%;
+}
+
+.local-options span{
+    cursor: pointer;
 }
 
 select {

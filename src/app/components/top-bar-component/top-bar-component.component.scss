@@ -5,16 +5,19 @@ $height-param: 20vh;
     overflow: hidden;
     height: $height-param;
     width: 100%;
+    border-bottom: 1px solid;
 }
 
 .topnav a:hover {
     background-color: #C6B9B9;
     color: #F87C56;
+    border: 1px solid;
 }
 
 .topnav a.active {
-    background-color: #C6B9B9;
+    background-color: green;
     color: #000000;
+    border: 1px solid;
 }
 
 .title-project {
@@ -23,12 +26,13 @@ $height-param: 20vh;
     text-align: center;
     text-decoration: none;
     height: $height-param;
-    width: 24%;
+    width: 23%;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     font-size: 45px;
+    cursor: default;
 }
 
 .title-pages {
@@ -42,6 +46,7 @@ $height-param: 20vh;
     justify-content: center;
     align-items: center;
     font-size: 24px;
+    cursor: default;
 }
 
 .span-icons {

@@ -43,8 +43,8 @@
             </div>
         </div>
         <div class="tag-section">
-            <div class="rectangle">
-                @for (tag of tagsSelected; track $index) {
+            <div class="tag-list-container">
+                @for (tag of tagsSelected.values(); track $index) {
                     <button [style.background-color]="tag.color_tag" 
                         (click)="onTagSelectedClick(tag)">{{ tag.nm_tag }} <span><i class="fa-solid fa-x tag-image"></i></span>
                     </button>
@@ -60,5 +60,33 @@
             </div>
         </div>
     </div>
-    <div class="section-right"><span>Teste B</span></div>
+    <div class="section-right">
+        <div class="total-section">
+            <div class="total-section-result">
+                <span> Resultados:  {{totalResults}} </span>
+            </div>
+            <div class="total-section-info">
+                <span><i class="fa-solid fa-circle-info"></i></span>
+            </div>
+        </div>
+        <div class="itens-section">
+            @for (local of locals; track $index) {
+                <div class="local-info-section">
+                    <div class="local-general-info">
+                        <span>{{local.nm_local}}</span>
+                        <span>{{local.ds_adress}}</span>
+                        <span>{{local.ds_working_timeshift}}</span>
+                    </div>
+                    <div class="local-options">
+                        <div >
+                            <span (click)="getLocalAdditionalInfo()"><i class="fa-solid fa-plus"></i>  Informações</span>
+                        </div>
+                        <div >
+                            <span (click)="saveLocalInUserFavorites()"><i class="fa-solid fa-bookmark"></i>  Salvar Local</span>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
 </div>
