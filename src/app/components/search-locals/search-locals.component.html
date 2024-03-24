@@ -1,0 +1,92 @@
+<div class="container">
+    <div class="section-left">
+        <div class="option-section">
+            <div class="option-description"><span>Período do Dia:</span></div>
+            <div class="option-selector">
+                <select name="selectPeriod" id="period" (change)="onPeriodSelectorChange($event)">
+                    @for (period of periodOptions; track $index) {
+                        <option [value]="period.value">{{ period.label }}</option>
+                    }
+                </select>
+            </div>
+            <div class="option-info">
+                <span><i class="fa-solid fa-circle-info"></i></span>
+            </div>
+        </div>
+        <div class="option-section">
+            <div class="option-description"><span>Cidade:</span></div>
+            <div class="option-selector">
+                <select name="selectCity" id="city" (change)="onCitySelectedChange($event)">
+                    @for (city of cityList; track $index) {
+                        <option [value]="city.id_city">{{ city.nm_city }}</option>
+                    }
+                </select>
+            </div>
+            <div class="option-info">
+                <span><i class="fa-solid fa-circle-info"></i></span>
+            </div>
+        </div>
+        <div class="option-section">
+            <div class="tag-description"><span>Tags Desejadas: </span></div>
+            <div class="tag-button">
+                <button (click)="clearTags()">
+                    <span>Limpar Tags   <i class="fa-solid fa-trash tag-image"></i></span>
+                </button>
+            </div>
+            <div class="tag-button">
+                <button (click)="openTagListModal()">
+                    <span>Nova Tag   <i class="fa-solid fa-plus tag-image"></i></span>
+                </button>
+            </div>
+            <div class="tag-info">
+                <span><i class="fa-solid fa-circle-info"></i></span>
+            </div>
+        </div>
+        <div class="tag-section">
+            <div class="tag-list-container">
+                @for (tag of tagsSelected.values(); track $index) {
+                    <button [style.background-color]="tag.color_tag" 
+                        (click)="onTagSelectedClick(tag)">{{ tag.nm_tag }} <span><i class="fa-solid fa-x tag-image"></i></span>
+                    </button>
+                }
+            </div>
+        </div>
+        <div class="sub-section">
+            <div class="sub-button">
+                <button (click)="clearFilters()"><span>Limpar Campos  <i class="fa-solid fa-trash tag-image"></i></span></button>
+            </div>
+            <div class="sub-button">
+                <button (click)="searchLocals()"><span>Procurar <i class="fa-solid fa-magnifying-glass-location tag-image"></i></span></button>
+            </div>
+        </div>
+    </div>
+    <div class="section-right">
+        <div class="total-section">
+            <div class="total-section-result">
+                <span> Resultados:  {{totalResults}} </span>
+            </div>
+            <div class="total-section-info">
+                <span><i class="fa-solid fa-circle-info"></i></span>
+            </div>
+        </div>
+        <div class="itens-section">
+            @for (local of locals; track $index) {
+                <div class="local-info-section">
+                    <div class="local-general-info">
+                        <span>{{local.nm_local}}</span>
+                        <span>{{local.ds_adress}}</span>
+                        <span>{{local.ds_working_timeshift}}</span>
+                    </div>
+                    <div class="local-options">
+                        <div >
+                            <span (click)="getLocalAdditionalInfo()"><i class="fa-solid fa-plus"></i>  Informações</span>
+                        </div>
+                        <div >
+                            <span (click)="saveLocalInUserFavorites()"><i class="fa-solid fa-bookmark"></i>  Salvar Local</span>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>

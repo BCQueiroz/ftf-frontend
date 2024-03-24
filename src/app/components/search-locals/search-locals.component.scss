@@ -1,0 +1,247 @@
+.container {
+    display: flex;
+    flex-direction: row;
+    height: 80vh;
+}
+
+.section-left, .section-right {
+  flex: 1; 
+  //padding: 25px; 
+}
+
+.section-left {
+  background-color: #E6E9EF;
+  border-right: 1px solid;
+  height: 100%;
+}
+
+.section-right {
+  background-color: #E6E9EF;
+  height: 100%;
+}
+
+.option-section {
+    width: 95%; 
+    display: flex; 
+    flex-direction: row;
+    height: 15%;
+    margin-left: 5%;
+}
+
+.option-description {
+    width: 34%;
+    font-size: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.option-selector {
+    width: 46%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.option-info {
+    font-size: 20px;
+    width: 20%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.option-info span {
+    cursor: pointer;
+}
+
+.option-span-button {
+    font-size: 18px;
+    width: 23%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.tag-section {
+    height: 35%;
+    width: 95%; 
+    display: flex; 
+    flex-direction: row;
+    margin-left: 5%;
+}
+
+.tag-description {
+    width: 30%;
+    font-size: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.tag-button {
+    font-size: 18px;
+    width: 25%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.tag-button button {
+    cursor: pointer;
+}
+
+.tag-image {
+    font-size: 15px;
+}
+
+.tag-info {
+    font-size: 20px;
+    width: 20%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.tag-info span {
+    cursor: pointer;
+}
+
+.tag-list-container {
+    width: 95%;
+    height: 100%;
+    border: 1px #D9D9D9;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px;
+    overflow: auto;
+    border-radius: 10px;
+    background-color: #D9D9D9;
+}
+
+.tag-list-container button {
+    flex-basis: calc(30% - 10px);
+    margin-bottom: 5px;
+    cursor: pointer;
+
+}
+
+.sub-section {
+    width: 95%; 
+    display: flex; 
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-end;
+    height: 15%;
+    margin-left: 5%;
+}
+
+.sub-button {
+    font-size: 18px;
+    width: 30%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.sub-button button {
+    cursor: pointer;
+}
+
+.total-section {
+    width: 100%;
+    border-bottom: 1px solid ;
+    height: 10%;
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
+}
+
+.total-section-result {
+    width: 70%;
+    padding: 0% 0% 0% 2%;
+    align-items: center;
+    display: flex;
+    justify-content: flex-start;
+}
+
+.total-section-info {
+    width: 30%;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    padding: 0% 2% 0% 0%;
+}
+
+.total-section-info span {
+    cursor: pointer;
+}
+
+.itens-section {
+    height: 80%;
+    overflow: auto;
+    display: flex;
+    flex-direction: column;
+}
+
+.local-info-section {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    border-bottom: 1px solid;
+}
+
+.local-general-info {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 75%;
+    padding: 3% 2% 3% 2%;
+}
+
+.local-general-info span {
+    margin: 0 0 1% 0;
+}
+
+.local-options {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    width: 25%;
+    border-left: 1px solid;
+    height: 100%;
+}
+
+.local-options span{
+    cursor: pointer;
+}
+
+select {
+  border-radius: 10px; 
+  padding: 8px; 
+  font-size: 16px;
+  outline: none; 
+  border: 1px solid #ccc;
+  width: 100%;
+}
+
+button {
+    border-radius: 10px; 
+    border: 1px solid #ccc;
+    font-size: 16px;
+    padding: 10px;
+}
+
+select::-ms-expand {
+    display: none; 
+}
+
+select::-webkit-select {
+  appearance: none;
+}
+
