@@ -1,0 +1,40 @@
+<div class="modal">
+    <div class="header">
+        <div class="header-title">
+            <p>{{localInfo.nmLocal}}</p>
+        </div>
+        <div class="header-close">
+            <span (click)="closeModal()">
+                <i class="fa-solid fa-x"></i>
+            </span>
+        </div>
+    </div>
+    <div class="body">
+        <div class="body-section">
+            <div class="upper-section">
+                <div class="upper-left-section">
+                    <p>Telefone: {{localInfo.dsPhone}}</p>
+                    <p>Endereço: {{localInfo.dsAddress}}</p>
+                    <p>Site: {{localInfo.dsSite}}</p>
+                    <p>Faixa de Preço Aproximada: {{localInfo.dsAproxPrice}}</p>
+                    <p>Resumo do Estabelecimento: </p>
+                    <div class="upper-left-description">
+                        <span>{{localInfo.dsLocal}} </span>
+                    </div>
+                </div>
+                <div class="upper-right-section">
+                    <p>Horario de Funcionamento</p>
+                    <div class="upper-right-workdays"></div>
+                </div>
+            </div>
+            <div class="bottom-section">
+                <p>Tags do Local: </p>
+                <div class="bottom-tag-list">
+                    @for (tag of localInfo.tagList; track $index) {
+                        <button [style.background-color]="tag.cdColorTag">{{ tag.nmTag }}</button>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

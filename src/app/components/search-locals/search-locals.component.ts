@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
+import { ModalTesteComponent } from '../modal-teste/modal-teste.component'
 
 @Component({
   selector: 'app-search-locals',
@@ -7,7 +9,7 @@ import { Component, OnInit } from '@angular/core';
   templateUrl: './search-locals.component.html',
   styleUrl: './search-locals.component.scss'
 })
-export class SearchLocalsComponent implements OnInit{
+export class SearchLocalsComponent implements OnInit {
 
   cityList = [
     { id_city: 0, nm_city: "" }
@@ -26,7 +28,7 @@ export class SearchLocalsComponent implements OnInit{
   totalResults = 3
 
   locals = [
-    { id_local: 1, nm_local: "Teste 1", ds_adress: "Endereço Teste 1", ds_working_timeshift: "18:00 - 00:00" },
+    { id_local: 1, nm_local: "Everpub - Cervejaria Everbrew", ds_adress: "Endereço Teste 1", ds_working_timeshift: "18:00 - 00:00" },
     { id_local: 1, nm_local: "Teste 1", ds_adress: "Endereço Teste 1", ds_working_timeshift: "18:00 - 00:00" },
     { id_local: 1, nm_local: "Teste 1", ds_adress: "Endereço Teste 1", ds_working_timeshift: "18:00 - 00:00" },
     { id_local: 1, nm_local: "Teste 1", ds_adress: "Endereço Teste 1", ds_working_timeshift: "18:00 - 00:00" },
@@ -34,6 +36,8 @@ export class SearchLocalsComponent implements OnInit{
     { id_local: 1, nm_local: "Teste 1", ds_adress: "Endereço Teste 1", ds_working_timeshift: "18:00 - 00:00" },
     { id_local: 2, nm_local: "Teste 2", ds_adress: "Endereço Teste 2", ds_working_timeshift: "19:30 - 02:00" }
   ]
+
+  constructor(private dialogRef : MatDialog){}
 
   ngOnInit(): void {
     this.cityList = [
@@ -44,8 +48,8 @@ export class SearchLocalsComponent implements OnInit{
         id_city: 2, nm_city: "São Vicente"
       }]
 
-      this.tagsSelected.set(1, { id_tag: 1, nm_tag: "Chopperia", color_tag: "#e6b927" })
-      this.tagsSelected.set(2, { id_tag: 2, nm_tag: "Música ao vivo", color_tag: "#a0a3a1"})
+      this.tagsSelected.set(1, { idTag: 1, nmTag: "Chopperia", cdColorTag: "#e6b927" })
+      this.tagsSelected.set(2, { idTag: 2, nmTag: "Música ao vivo", cdColorTag: "#a0a3a1"})
   }
 
   onPeriodSelectorChange(event: Event) {
@@ -64,7 +68,7 @@ export class SearchLocalsComponent implements OnInit{
   }
 
   openTagListModal() {
-    this.tagsSelected.set(3, {id_tag: 3, nm_tag: "Hamburgueria", color_tag: "#065e2e"})
+    this.tagsSelected.set(3, {idTag: 3, nmTag: "Hamburgueria", cdColorTag: "#065e2e"})
   }
 
   clearTags(){
@@ -79,12 +83,24 @@ export class SearchLocalsComponent implements OnInit{
     console.log("Pesquisando locais - teste.")
   }
 
-  getLocalAdditionalInfo(){
+  getLocalAdditionalInfo(localInfo: any){
+    if(!localInfo) return 
+    let localInfoProcessed = {
+      nmLocal: localInfo.nm_local,
+      dsAddress: localInfo.ds_adress,
+      tagList: Array.from(this.tagsSelected.values())
+    }
+    this.dialogRef.open(ModalTesteComponent, 
+      { data: 
+        {
+        localInfoProcessed
+      }
+    })
+
     console.log("Procurando informações adicionais - teste.")
   }
 
   saveLocalInUserFavorites() {
     console.log("Salvando local na lista de favoritos do usuário - teste.")
   }
-
 }
