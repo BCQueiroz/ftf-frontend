@@ -85,17 +85,21 @@ export class SearchLocalsComponent implements OnInit {
 
   getLocalAdditionalInfo(localInfo: any){
     if(!localInfo) return 
-    let localInfoProcessed = {
-      nmLocal: localInfo.nm_local,
-      dsAddress: localInfo.ds_adress,
-      tagList: Array.from(this.tagsSelected.values())
-    }
+    let workdays = [
+      "Segunda: Fechado", "Terça: Das 18:00 até as 00:30", "Quarta: Das 18:00 até as 01:00", 
+        "Quinta: Das 18:00 até as 01:00", "Sexta: Das 18:00 até as 02:00", "Sábado: Das 18:00 até as 02:00", 
+        "Domingo: Das 18:00 até as 01:00"
+    ]
     this.dialogRef.open(ModalTesteComponent, 
-      { data: 
-        {
-        localInfoProcessed
+      { 
+        data: {
+          nmLocal: localInfo.nm_local,
+          dsAddress: localInfo.ds_adress,
+          tagList: Array.from(this.tagsSelected.values()),
+          dsWorkdays: workdays
+        }
       }
-    })
+    )
 
     console.log("Procurando informações adicionais - teste.")
   }

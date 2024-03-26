@@ -24,7 +24,11 @@
                 </div>
                 <div class="upper-right-section">
                     <p>Horario de Funcionamento</p>
-                    <div class="upper-right-workdays"></div>
+                    <div class="upper-right-workdays">
+                        @for(workday of localInfo.dsWorkdays; track $index) {
+                            <span>{{ workday }}</span>
+                        }
+                    </div>
                 </div>
             </div>
             <div class="bottom-section">
