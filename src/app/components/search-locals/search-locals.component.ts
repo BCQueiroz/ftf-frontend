@@ -1,11 +1,17 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { ModalTesteComponent } from '../modal-teste/modal-teste.component'
+import { ModalAdditionalInfoComponent } from '../modal-additional-info/modal-additional-info.component';
+import { ModalTagListComponent } from '../modal-tag-list/modal-tag-list.component';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { SearchLocalsService } from './search-locals-service';
+import { TagTypeInfo } from '../../interfaces/tagTypeInfo';
+import { TagInfo } from '../../interfaces/tagInfo';
 
 @Component({
   selector: 'app-search-locals',
   standalone: true,
-  imports: [],
+  imports: [ HttpClientModule ],
+  providers :  [SearchLocalsService ],
   templateUrl: './search-locals.component.html',
   styleUrl: './search-locals.component.scss'
 })
@@ -23,7 +29,8 @@ export class SearchLocalsComponent implements OnInit {
     { label: 'Noite (18:01 - 00:00)', value: '4' }
   ];
 
-  tagsSelected = new Map()
+  tagListByType: any
+  tagsSelected: Map<number, TagInfo> = new Map()
 
   totalResults = 3
 
@@ -37,7 +44,7 @@ export class SearchLocalsComponent implements OnInit {
     { id_local: 2, nm_local: "Teste 2", ds_adress: "Endereço Teste 2", ds_working_timeshift: "19:30 - 02:00" }
   ]
 
-  constructor(private dialogRef : MatDialog){}
+  constructor(private dialogRef : MatDialog, private http: HttpClient, private searchService: SearchLocalsService){}
 
   ngOnInit(): void {
     this.cityList = [
@@ -48,8 +55,11 @@ export class SearchLocalsComponent implements OnInit {
         id_city: 2, nm_city: "São Vicente"
       }]
 
-      this.tagsSelected.set(1, { idTag: 1, nmTag: "Chopperia", cdColorTag: "#e6b927" })
-      this.tagsSelected.set(2, { idTag: 2, nmTag: "Música ao vivo", cdColorTag: "#a0a3a1"})
+      this.searchService.getMockTags().subscribe(
+        (response) => {
+          this.tagListByType = response
+        }
+      )
   }
 
   onPeriodSelectorChange(event: Event) {
@@ -63,12 +73,57 @@ export class SearchLocalsComponent implements OnInit {
   }
 
   onTagSelectedClick(event: any) {
-    if(event && event.id_tag)
-    this.tagsSelected.delete(event.id_tag)
+    if(event && event.idTag)
+    this.tagsSelected.delete(event.idTag)
+  }
+
+  openModalAdditionalInfo(localInfo: any){
+    if(!localInfo) return 
+    let workdays = [
+      "Segunda: Fechado", "Terça: Das 18:00 até as 00:30", "Quarta: Das 18:00 até as 01:00", 
+        "Quinta: Das 18:00 até as 01:00", "Sexta: Das 18:00 até as 02:00", "Sábado: Das 18:00 até as 02:00", 
+        "Domingo: Das 18:00 até as 01:00"
+    ]
+    this.dialogRef.open(ModalAdditionalInfoComponent, 
+      { 
+        data: {
+          nmLocal: localInfo.nm_local,
+          dsAddress: localInfo.ds_adress,
+          tagList: Array.from(this.tagsSelected.values()),
+          dsWorkdays: workdays
+        }
+      }
+    )
+    console.log("Procurando informações adicionais - teste.")
   }
 
   openTagListModal() {
-    this.tagsSelected.set(3, {idTag: 3, nmTag: "Hamburgueria", cdColorTag: "#065e2e"})
+    console.log(this.tagsSelected)
+    this.tagListByType.result.tags.forEach((element: any) => {
+      element.tagList.forEach((tag:any) => {
+        tag.isSelected = false
+      })
+    });
+    
+    const dialogRefModal = this.dialogRef.open(ModalTagListComponent, 
+      {
+        data: {
+          tagList: this.tagListByType.result.tags,
+        }
+      }
+    )
+
+    dialogRefModal.afterClosed().subscribe((result:Array<TagInfo>) => {
+      this.addNewTags(result)
+    })
+  }
+
+  async addNewTags(tagListToAdd: Array<TagInfo>) {
+    tagListToAdd.forEach(async tag => {
+      if(!this.tagsSelected.has(tag.idTag)){
+        await this.tagsSelected.set(tag.idTag, { idTag: tag.idTag, dsTag: tag.dsTag, cdColorTag: tag.cdColorTag, isSelected: true})
+      }
+    })
   }
 
   clearTags(){
@@ -83,26 +138,7 @@ export class SearchLocalsComponent implements OnInit {
     console.log("Pesquisando locais - teste.")
   }
 
-  getLocalAdditionalInfo(localInfo: any){
-    if(!localInfo) return 
-    let workdays = [
-      "Segunda: Fechado", "Terça: Das 18:00 até as 00:30", "Quarta: Das 18:00 até as 01:00", 
-        "Quinta: Das 18:00 até as 01:00", "Sexta: Das 18:00 até as 02:00", "Sábado: Das 18:00 até as 02:00", 
-        "Domingo: Das 18:00 até as 01:00"
-    ]
-    this.dialogRef.open(ModalTesteComponent, 
-      { 
-        data: {
-          nmLocal: localInfo.nm_local,
-          dsAddress: localInfo.ds_adress,
-          tagList: Array.from(this.tagsSelected.values()),
-          dsWorkdays: workdays
-        }
-      }
-    )
-
-    console.log("Procurando informações adicionais - teste.")
-  }
+  
 
   saveLocalInUserFavorites() {
     console.log("Salvando local na lista de favoritos do usuário - teste.")

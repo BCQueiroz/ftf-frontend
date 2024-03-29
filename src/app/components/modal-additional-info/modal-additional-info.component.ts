@@ -1,21 +1,20 @@
 import { CommonModule } from '@angular/common';
 import { Component, Inject, OnInit } from '@angular/core';
-import { MAT_DIALOG_DATA, MatDialog } from '@angular/material/dialog';
+import { MAT_DIALOG_DATA, MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { LocalAdditionalInfo } from '../../interfaces/localAdditionalInfo';
 
 @Component({
-  selector: 'app-modal-teste',
+  selector: 'app-modal-additional-info',
   standalone: true,
   imports: [CommonModule],
-  templateUrl: './modal-teste.component.html',
-  styleUrl: './modal-teste.component.scss'
+  templateUrl: './modal-additional-info.component.html',
+  styleUrl: './modal-additional-info.component.scss'
 })
-export class ModalTesteComponent implements OnInit{
+export class ModalAdditionalInfoComponent implements OnInit{
 
   localInfo: LocalAdditionalInfo
 
-  constructor(@Inject(MAT_DIALOG_DATA) public data: any, private dialogRef : MatDialog) {
-    console.log(data)
+  constructor(@Inject(MAT_DIALOG_DATA) public data: any, private dialogRef : MatDialogRef<ModalAdditionalInfoComponent>) {
     this.localInfo = {
       nmLocal: data.nmLocal ? data.nmLocal : "-",
       dsPhone: data.dsPhone ? data.dsPhone : "-", 
@@ -33,7 +32,6 @@ export class ModalTesteComponent implements OnInit{
   }
 
   closeModal() {
-    this.dialogRef.closeAll()
+    this.dialogRef.close()
   }
-
 }

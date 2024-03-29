@@ -10,3 +10,11 @@ body, html {
 }
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+.modal {
+    border-radius: 10px;
+    width: 800px;
+    height: 500px;
+    display: flex;
+    flex-direction: column;
+}

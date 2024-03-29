@@ -1,0 +1,40 @@
+<div class="modal">
+    <div class="header">
+        <div class="header-title">
+            <p>Tags Disponíveis</p>
+        </div>
+        <div class="header-close">
+            <span (click)="closeModal()">
+                <i class="fa-solid fa-x"></i>
+            </span>
+        </div>
+    </div>
+    <div class="body">
+        <div class="body-tags">
+            <div class="body-tags-list">
+                @for(tagType of tagTypeList; track $index){
+                    <div class="tag-type-container">
+                        <div class="tag-type-title">
+                            <span >{{tagType.dsTypeTag}}</span>
+                        </div>
+                        <div class="tag-div">
+                            @for(tag of tagType.tagList; track $index) {
+                                <button [style.border-color]="tagType.cdColorTypeTag" (click)="onTagClick(tag)">
+                                    <span>{{tag.dsTag}} 
+                                        <i *ngIf="!tag.isSelected" class="fa-solid fa-x"></i>
+                                        <i *ngIf="tag.isSelected" class="fa-solid fa-check"></i>
+                                    </span>   
+                                </button>
+                            }
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+    <div class="footer">
+        <button (click)="resetTagSelection()"><span>Recomeçar</span></button>
+        <button (click)="onSubmit()"><span>Pronto</span></button>
+    </div>
+</div>
+

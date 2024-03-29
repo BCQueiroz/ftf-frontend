@@ -1,8 +1,7 @@
 
-export interface TagInfo {
-    idTag: number
-    nmTag: string
-    cdColorTag: string
-    idTypeTag: number
-    cdTypeTag: string
+export class TagInfo {
+    idTag: number = 0
+    dsTag: string = ""
+    cdColorTag: string = ""
+    isSelected: boolean = false
 }

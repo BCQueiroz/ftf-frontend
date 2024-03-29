@@ -46,7 +46,7 @@
             <div class="tag-list-container">
                 @for (tag of tagsSelected.values(); track $index) {
                     <button [style.background-color]="tag.cdColorTag" 
-                        (click)="onTagSelectedClick(tag)">{{ tag.nmTag }} <span><i class="fa-solid fa-x tag-image"></i></span>
+                        (click)="onTagSelectedClick(tag)">{{ tag.dsTag }} <span><i class="fa-solid fa-x tag-image"></i></span>
                     </button>
                 }
             </div>
@@ -79,7 +79,7 @@
                     </div>
                     <div class="local-options">
                         <div >
-                            <span (click)="getLocalAdditionalInfo(local)"><i class="fa-solid fa-plus"></i>  Informações</span>
+                            <span (click)="openModalAdditionalInfo(local)"><i class="fa-solid fa-plus"></i>  Informações</span>
                         </div>
                         <div >
                             <span (click)="saveLocalInUserFavorites()"><i class="fa-solid fa-bookmark"></i>  Salvar Local</span>
