@@ -1,0 +1,224 @@
+{
+    "success": true,
+    "message": "Tags retornadas com sucesso.",
+    "result": {
+        "tags": [
+            {
+                "idTypeTag": 1,
+                "dsTypeTag": "Alimentação",
+                "cdColorTypeTag": "#e6b927",
+                "tagList": [
+                    {
+                        "idTag": 1,
+                        "dsTag": "Hamburgueria"
+                    },
+                    {
+                        "idTag": 2,
+                        "dsTag": "Chopperia"
+                    },
+                    {
+                        "idTag": 3,
+                        "dsTag": "Porções"
+                    },
+                    {
+                        "idTag": 4,
+                        "dsTag": "Comida FastFood"
+                    },
+                    {
+                        "idTag": 5,
+                        "dsTag": "Comida Fitness"
+                    }
+                ]
+            },
+            {
+                "idTypeTag": 2,
+                "dsTypeTag": "Religioso",
+                "cdColorTypeTag": "#fafafa",
+                "tagList": [
+                    {
+                        "idTag": 6,
+                        "dsTag": "Católico"
+                    },
+                    {
+                        "idTag": 7,
+                        "dsTag": "Evangélico"
+                    },
+                    {
+                        "idTag": 8,
+                        "dsTag": "Judeu"
+                    },
+                    {
+                        "idTag": 9,
+                        "dsTag": "Budista"
+                    },
+                    {
+                        "idTag": 10,
+                        "dsTag": "Hinduísta"
+                    }
+                ]
+            },
+            {
+                "idTypeTag": 3,
+                "dsTypeTag": "Cultural",
+                "cdColorTypeTag": "#074bde",
+                "tagList": [
+                    {
+                        "idTag": 11,
+                        "dsTag": "Cinema"
+                    },
+                    {
+                        "idTag": 12,
+                        "dsTag": "Exposição"
+                    },
+                    {
+                        "idTag": 13,
+                        "dsTag": "Museu"
+                    },
+                    {
+                        "idTag": 14,
+                        "dsTag": "Casa de Shows"
+                    },
+                    {
+                        "idTag": 15,
+                        "dsTag": "Teatro"
+                    }
+                ]
+            },
+            {
+                "idTypeTag": 4,
+                "dsTypeTag": "Natureza",
+                "cdColorTypeTag": "#1dde74",
+                "tagList": [
+                    {
+                        "idTag": 16,
+                        "dsTag": "Praia"
+                    },
+                    {
+                        "idTag": 17,
+                        "dsTag": "Cachoeira"
+                    },
+                    {
+                        "idTag": 18,
+                        "dsTag": "Lago/ Lagoa"
+                    },
+                    {
+                        "idTag": 19,
+                        "dsTag": "Rio"
+                    },
+                    {
+                        "idTag": 20,
+                        "dsTag": "Trilha"
+                    }
+                ]
+            },
+            {
+                "idTypeTag": 5,
+                "dsTypeTag": "Esportivo",
+                "cdColorTypeTag": "#a30a1c",
+                "tagList": [
+                    {
+                        "idTag": 21,
+                        "dsTag": "Pista de skate"
+                    },
+                    {
+                        "idTag": 22,
+                        "dsTag": "Ciclovia"
+                    },
+                    {
+                        "idTag": 23,
+                        "dsTag": "Quadra de basquete"
+                    },
+                    {
+                        "idTag": 24,
+                        "dsTag": "Quadra de futebol"
+                    },
+                    {
+                        "idTag": 25,
+                        "dsTag": "Parede de escalada"
+                    }
+                ]
+            },
+            {
+                "idTypeTag": 6,
+                "dsTypeTag": "Comercio",
+                "cdColorTypeTag": "#065e2e",
+                "tagList": [
+                    {
+                        "idTag": 26,
+                        "dsTag": "Temática Esportiva"
+                    },
+                    {
+                        "idTag": 27,
+                        "dsTag": "Temática Infantil"
+                    },
+                    {
+                        "idTag": 28,
+                        "dsTag": "Temática Formal"
+                    },
+                    {
+                        "idTag": 29,
+                        "dsTag": "Temática Geek"
+                    },
+                    {
+                        "idTag": 30,
+                        "dsTag": "Materias de construção"
+                    }
+                ]
+            },
+            {
+                "idTypeTag": 7,
+                "dsTypeTag": "Diverso",
+                "cdColorTypeTag": "#a0a3a1",
+                "tagList": [
+                    {
+                        "idTag": 31,
+                        "dsTag": "Musica ao vivo"
+                    },
+                    {
+                        "idTag": 32,
+                        "dsTag": "Espaço Indoor/ Coberto"
+                    },
+                    {
+                        "idTag": 33,
+                        "dsTag": "Games Antigos"
+                    },
+                    {
+                        "idTag": 34,
+                        "dsTag": "Espaço Kids"
+                    },
+                    {
+                        "idTag": 35,
+                        "dsTag": "Terraço"
+                    }
+                ]
+            },
+            {
+                "idTypeTag": 8,
+                "dsTypeTag": "Vibe Musical",
+                "cdColorTypeTag": "#8e21c4",
+                "tagList": [
+                    {
+                        "idTag": 36,
+                        "dsTag": "Estilo Musical: Rock"
+                    },
+                    {
+                        "idTag": 37,
+                        "dsTag": "Estilo Musical: Funk"
+                    },
+                    {
+                        "idTag": 38,
+                        "dsTag": "Estilo Musical: Pop"
+                    },
+                    {
+                        "idTag": 39,
+                        "dsTag": "Estilo Musical: Sertanejo"
+                    },
+                    {
+                        "idTag": 40,
+                        "dsTag": "Estilo Musical: Samba"
+                    }
+                ]
+            }
+        ]
+    }
+}
