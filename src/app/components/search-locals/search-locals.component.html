@@ -5,7 +5,7 @@
             <div class="option-selector">
                 <select name="selectPeriod" id="period" (change)="onPeriodSelectorChange($event)">
                     @for (period of periodOptions; track $index) {
-                        <option [value]="period.value">{{ period.label }}</option>
+                        <option [value]="period.idPeriod">{{ period.label }}</option>
                     }
                 </select>
             </div>
@@ -18,7 +18,7 @@
             <div class="option-selector">
                 <select name="selectCity" id="city" (change)="onCitySelectedChange($event)">
                     @for (city of cityList; track $index) {
-                        <option [value]="city.id_city">{{ city.nm_city }}</option>
+                        <option [value]="city.idCity">{{ city.nmCity }} - {{city.cdAcronym}}</option>
                     }
                 </select>
             </div>
@@ -73,9 +73,9 @@
             @for (local of locals; track $index) {
                 <div class="local-info-section">
                     <div class="local-general-info">
-                        <span>{{local.nm_local}}</span>
-                        <span>{{local.ds_adress}}</span>
-                        <span>{{local.ds_working_timeshift}}</span>
+                        <span>{{local.nmLocal}}</span>
+                        <span>{{local.nmAddress}}, {{local.cdNumberAddress}} - {{local.nmCity}}</span>
+                        <span>Horário de Funcionamento: {{local.dhBeginDay}} - {{local.dhEndDay}}</span>
                     </div>
                     <div class="local-options">
                         <div >

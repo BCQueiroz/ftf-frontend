@@ -8,11 +8,39 @@ import { Observable } from "rxjs";
 
 export class SearchLocalsService {
 
+    private searchUrl = "http://localhost:3000/api/search"
+    private getCitiesUrl = "get-all-cities"
+    private getTagsUrl = "get-all-tags"
+    private getLocalsUrl = "search-locals"
+    private getLocalAdditionalInfoUrl = "get-local-additional-info"
+
     constructor(private http: HttpClient) { 
     }
 
-    getMockTags(): Observable<any>{
+    getMockTags(): Observable<any> {
         return this.http.get<any>('assets/tags-mock.json');
+    }
+
+    getAllTags(): Observable<any> {
+        return this.http.get<any>(`${this.searchUrl}/${this.getTagsUrl}`)
+    }
+
+    getAllCities(): Observable<any> {
+        return this.http.get<any>(`${this.searchUrl}/${this.getCitiesUrl}`)
+    }
+
+    searchLocals(idPeriod: any, idCity: any, idTagList: Array<number>): Observable<any> {
+        var bodyRequisition = {
+            idPeriod, idCity, idTagList
+        }
+        return this.http.post<any>(`${this.searchUrl}/${this.getLocalsUrl}`, bodyRequisition)
+    }
+
+    getLocalAdditionalInfo(idLocal: number): Observable<any> {
+        var bodyRequisition = {
+            idLocal
+        }
+        return this.http.post<any>(`${this.searchUrl}/${this.getLocalAdditionalInfoUrl}`, bodyRequisition)
     }
 
 }
