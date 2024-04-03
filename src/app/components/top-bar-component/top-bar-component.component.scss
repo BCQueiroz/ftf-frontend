@@ -9,13 +9,12 @@ $height-param: 20vh;
 }
 
 .topnav a:hover {
-    background-color: #C6B9B9;
     color: #F87C56;
     border: 1px solid;
 }
 
 .topnav a.active {
-    background-color: green;
+    background-color: #C6B9B9;
     color: #000000;
     border: 1px solid;
 }

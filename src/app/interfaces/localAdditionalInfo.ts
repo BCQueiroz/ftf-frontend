@@ -1,7 +1,5 @@
-import { TagInfo } from "./tagInfo"
 
-
-export class LocalAdditionalInfo{
+export class LocalAdditionalInfo {
     nmLocal: string = ""
     dsPhone: string = ""
     dsAddress: string = "" 
@@ -9,5 +7,5 @@ export class LocalAdditionalInfo{
     dsAproxPrice: string = ""
     dsLocal: string = ""
     dsWorkdays: Array<string> = []
-    tagList: Array<TagInfo> = []
+    tagList: Array<any> = []
 }

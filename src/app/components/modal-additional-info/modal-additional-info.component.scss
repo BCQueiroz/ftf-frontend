@@ -16,10 +16,19 @@
     width: 100%;
     display: flex;
     justify-content: center;
+    align-items: center;
+}
+
+.header-title p {
+    position: absolute;
 }
 
 .header-close {
     z-index: 1;
+}
+
+.header-close span {
+    margin-left: 700px;
 }
 
 .header-close i {

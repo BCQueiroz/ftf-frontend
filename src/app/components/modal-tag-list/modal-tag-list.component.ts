@@ -27,7 +27,6 @@ export class ModalTagListComponent implements OnInit{
   }
 
   onTagClick(tag: any){
-    console.log(tag)
     tag.isSelected = !tag.isSelected
   }
 

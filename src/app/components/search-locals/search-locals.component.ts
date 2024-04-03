@@ -8,6 +8,7 @@ import { TagTypeInfo } from '../../interfaces/tagTypeInfo';
 import { TagInfo } from '../../interfaces/tagInfo';
 import { CityInfo } from '../../interfaces/cityInfo';
 import { LocalInfo } from '../../interfaces/localInfo';
+import { LocalAdditionalInfo } from '../../interfaces/localAdditionalInfo';
 
 @Component({
   selector: 'app-search-locals',
@@ -58,7 +59,6 @@ export class SearchLocalsComponent implements OnInit {
 
     await this.searchService.searchLocals(idPeriodSelected, idCitySelected, tagsSelected).subscribe(
       (response) => {
-        console.log(response)
         if(response.result && response.result.locals) this.initializeLocalInfo(response.result.locals)
       }
     )
@@ -131,28 +131,22 @@ export class SearchLocalsComponent implements OnInit {
     this.totalResults = this.locals.length
   }
 
-  initializeLocalAdditionalInfo(){
-
-  }
-
   async openModalAdditionalInfo(localInfo: any){
     if(!localInfo) return 
-    await this.searchService.getLocalAdditionalInfo(localInfo.idLocal).subscribe(
-      (response) => {
-        console.log(response)
-      }
+
+    this.searchService.getLocalAdditionalInfo(localInfo.idLocal).subscribe(
+      (localAdditionalInfo) => {
+        console.log(localAdditionalInfo)
+
+        this.dialogRef.open(ModalAdditionalInfoComponent, 
+          { 
+            data: {
+              localAdditionalInfo: localAdditionalInfo.result.localAdditionalInfo
+            }
+          }
+        )
+      },
     )
-    this.dialogRef.open(ModalAdditionalInfoComponent, 
-      { 
-        data: {
-          nmLocal: localInfo.nmLocal,
-          dsAddress: localInfo.dsAddress,
-          tagList: Array.from(this.tagsSelected.values()),
-          dsWorkdays: []
-        }
-      }
-    )
-    console.log("Procurando informações adicionais - teste.")
   }
 
   openTagListModal() {
