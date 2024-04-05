@@ -8,13 +8,15 @@ import { TagTypeInfo } from '../../interfaces/tagTypeInfo';
 import { TagInfo } from '../../interfaces/tagInfo';
 import { CityInfo } from '../../interfaces/cityInfo';
 import { LocalInfo } from '../../interfaces/localInfo';
-import { LocalAdditionalInfo } from '../../interfaces/localAdditionalInfo';
+import { MatTooltip, MatTooltipModule } from '@angular/material/tooltip'
+import { TooltipInformation } from '../../utils/tooltip-information';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-search-locals',
   standalone: true,
-  imports: [ HttpClientModule ],
-  providers :  [SearchLocalsService ],
+  imports: [ HttpClientModule, MatTooltipModule, FormsModule ],
+  providers :  [ SearchLocalsService ],
   templateUrl: './search-locals.component.html',
   styleUrl: './search-locals.component.scss'
 })
@@ -22,6 +24,7 @@ export class SearchLocalsComponent implements OnInit {
 
   cityList: Array<CityInfo> = []
   periodOptions = [
+    { label: 'Qualquer Período', idPeriod: 0 },
     { label: 'Madrugada (00:01 - 6:00)', idPeriod: 1 },
     { label: 'Manhã (6:01 - 12:00)', idPeriod: 2 },
     { label: 'Tarde (12:01 - 18:00)', idPeriod: 3 },
@@ -30,11 +33,12 @@ export class SearchLocalsComponent implements OnInit {
   tagListByType: Array<TagTypeInfo> = []
 
   citySelected: number = 0
-  periodSelected: number = 1; 
+  periodSelected: number = 0; 
   tagsSelected: Map<number, TagInfo> = new Map()
 
   totalResults = 0
   locals: Array<LocalInfo> = []
+  tooltipsInformations = new TooltipInformation()
 
   constructor(private dialogRef : MatDialog, private http: HttpClient, private searchService: SearchLocalsService){}
 
@@ -84,10 +88,15 @@ export class SearchLocalsComponent implements OnInit {
     cityList.forEach( (city: any) => {
       var cityInfo = new CityInfo()
       cityInfo.idCity = city.idCity
-      cityInfo.nmCity = city.nmCity
+      cityInfo.nmCity = city.nmCity + " - " + city.cdAcronym
       cityInfo.cdAcronym = city.cdAcronym
       cities.push(cityInfo)
     })
+    var cityInfoDefault = new CityInfo()
+    cityInfoDefault.idCity = 0
+    cityInfoDefault.nmCity = "Qualquer Cidade"
+
+    this.cityList.push(cityInfoDefault)
     this.cityList.push(...cities)
     this.citySelected = this.cityList.length != 0 ? this.cityList[0].idCity : 0
   }
@@ -172,6 +181,11 @@ export class SearchLocalsComponent implements OnInit {
   }
 
   clearTags(){
+    this.tagListByType.forEach(it => {
+      it.tagList.forEach(tag => {
+        tag.isSelected = false
+      })
+    })
     this.tagsSelected.clear()
   }
 
