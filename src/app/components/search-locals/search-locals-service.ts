@@ -8,7 +8,8 @@ import { Observable } from "rxjs";
 
 export class SearchLocalsService {
 
-    private searchUrl = "http://localhost:3000/api/search"
+    //private ambientUrl = process.env["AMBIENTE_URL"] ? process.env["AMBIENTE_URL"] : "http://localhost:3000/"
+    private searchUrl = `http://localhost:3000/api/search`
     private getCitiesUrl = "get-all-cities"
     private getTagsUrl = "get-all-tags"
     private getLocalsUrl = "search-locals"
