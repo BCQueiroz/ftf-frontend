@@ -1,8 +1,8 @@
 import { TagInfo } from "./tagInfo"
 
-export interface TagTypeInfo {
-    cdColorTypeTag: string
-    dsTypeTag: string
-    idTypeTag: number
-    tagList: Array<TagInfo>
+export class TagTypeInfo {
+    cdColorTypeTag: string = ""
+    dsTypeTag: string = ""
+    idTypeTag: number = 0
+    tagList: Array<TagInfo> = []
 }

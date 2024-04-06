@@ -6,70 +6,76 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { SearchLocalsService } from './search-locals-service';
 import { TagTypeInfo } from '../../interfaces/tagTypeInfo';
 import { TagInfo } from '../../interfaces/tagInfo';
+import { CityInfo } from '../../interfaces/cityInfo';
+import { LocalInfo } from '../../interfaces/localInfo';
+import { MatTooltip, MatTooltipModule } from '@angular/material/tooltip'
+import { TooltipInformation } from '../../utils/tooltip-information';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-search-locals',
   standalone: true,
-  imports: [ HttpClientModule ],
-  providers :  [SearchLocalsService ],
+  imports: [ HttpClientModule, MatTooltipModule, FormsModule ],
+  providers :  [ SearchLocalsService ],
   templateUrl: './search-locals.component.html',
   styleUrl: './search-locals.component.scss'
 })
 export class SearchLocalsComponent implements OnInit {
 
-  cityList = [
-    { id_city: 0, nm_city: "" }
-  ]
-
-  periodSelected: string = ''; 
+  cityList: Array<CityInfo> = []
   periodOptions = [
-    { label: 'Madrugada (00:01 - 6:00)', value: '1' },
-    { label: 'Manhã (6:01 - 12:00)', value: '2' },
-    { label: 'Tarde (12:01 - 18:00)', value: '3' },
-    { label: 'Noite (18:01 - 00:00)', value: '4' }
+    { label: 'Qualquer Período', idPeriod: 0 },
+    { label: 'Madrugada (00:01 - 6:00)', idPeriod: 1 },
+    { label: 'Manhã (6:01 - 12:00)', idPeriod: 2 },
+    { label: 'Tarde (12:01 - 18:00)', idPeriod: 3 },
+    { label: 'Noite (18:01 - 00:00)', idPeriod: 4 }
   ];
+  tagListByType: Array<TagTypeInfo> = []
 
-  tagListByType: any
+  citySelected: number = 0
+  periodSelected: number = 0; 
   tagsSelected: Map<number, TagInfo> = new Map()
 
-  totalResults = 3
-
-  locals = [
-    { id_local: 1, nm_local: "Everpub - Cervejaria Everbrew", ds_adress: "Endereço Teste 1", ds_working_timeshift: "18:00 - 00:00" },
-    { id_local: 1, nm_local: "Teste 1", ds_adress: "Endereço Teste 1", ds_working_timeshift: "18:00 - 00:00" },
-    { id_local: 1, nm_local: "Teste 1", ds_adress: "Endereço Teste 1", ds_working_timeshift: "18:00 - 00:00" },
-    { id_local: 1, nm_local: "Teste 1", ds_adress: "Endereço Teste 1", ds_working_timeshift: "18:00 - 00:00" },
-    { id_local: 1, nm_local: "Teste 1", ds_adress: "Endereço Teste 1", ds_working_timeshift: "18:00 - 00:00" },
-    { id_local: 1, nm_local: "Teste 1", ds_adress: "Endereço Teste 1", ds_working_timeshift: "18:00 - 00:00" },
-    { id_local: 2, nm_local: "Teste 2", ds_adress: "Endereço Teste 2", ds_working_timeshift: "19:30 - 02:00" }
-  ]
+  totalResults = 0
+  locals: Array<LocalInfo> = []
+  tooltipsInformations = new TooltipInformation()
 
   constructor(private dialogRef : MatDialog, private http: HttpClient, private searchService: SearchLocalsService){}
 
-  ngOnInit(): void {
-    this.cityList = [
-      {
-        id_city: 1, nm_city: "Santos"
-      },
-      {
-        id_city: 2, nm_city: "São Vicente"
-      }]
+  async ngOnInit(): Promise<void> {
+    await this.searchService.getAllTags().subscribe(
+      (response) => {
+        this.initializeTagList(response.result.tags)
+      }
+    )
 
-      this.searchService.getMockTags().subscribe(
-        (response) => {
-          this.tagListByType = response
-        }
-      )
+    await this.searchService.getAllCities().subscribe(
+      (response) => {
+        this.initializeCitiesList(response.result.cities)
+      }
+    )
+  }
+
+  async searchLocals(){
+    const idPeriodSelected = Boolean(this.periodSelected) && this.periodSelected != 0 ? this.periodSelected : null
+    const idCitySelected = Boolean(this.citySelected) && this.citySelected != 0 ? this.citySelected : null
+    const tagsSelected = Array.from(this.tagsSelected.keys())
+
+    await this.searchService.searchLocals(idPeriodSelected, idCitySelected, tagsSelected).subscribe(
+      (response) => {
+        if(response.result && response.result.locals) this.initializeLocalInfo(response.result.locals)
+      }
+    )
   }
 
   onPeriodSelectorChange(event: Event) {
     const periodSelected = (event.target as HTMLSelectElement).value;
-    console.log(periodSelected)
+    if(Boolean(periodSelected)) this.periodSelected = Number(periodSelected)
   }
 
   onCitySelectedChange(event: Event) {
     const citySelected = (event.target as HTMLSelectElement).value
-    console.log(citySelected)
+    if(Boolean(citySelected)) this.citySelected = Number(citySelected)
   }
 
   onTagSelectedClick(event: any) {
@@ -77,38 +83,86 @@ export class SearchLocalsComponent implements OnInit {
     this.tagsSelected.delete(event.idTag)
   }
 
-  openModalAdditionalInfo(localInfo: any){
+  initializeCitiesList(cityList: Array<any>){
+    var cities: Array<CityInfo> = []
+    cityList.forEach( (city: any) => {
+      var cityInfo = new CityInfo()
+      cityInfo.idCity = city.idCity
+      cityInfo.nmCity = city.nmCity + " - " + city.cdAcronym
+      cityInfo.cdAcronym = city.cdAcronym
+      cities.push(cityInfo)
+    })
+    var cityInfoDefault = new CityInfo()
+    cityInfoDefault.idCity = 0
+    cityInfoDefault.nmCity = "Qualquer Cidade"
+
+    this.cityList.push(cityInfoDefault)
+    this.cityList.push(...cities)
+    this.citySelected = this.cityList.length != 0 ? this.cityList[0].idCity : 0
+  }
+
+  initializeTagList(tagList: Array<any>){
+    var tagTypeList: Array<TagTypeInfo> = []
+    tagList.forEach((tagType: any) => {
+      var newTagType: TagTypeInfo = new TagTypeInfo()
+      newTagType.idTypeTag = tagType.idTypeTag
+      newTagType.dsTypeTag = tagType.dsTypeTag
+      newTagType.cdColorTypeTag = "#" + tagType.cdColorTypeTag
+
+      tagType.tagList.forEach((tag:any) => {
+        var newTag: TagInfo = new TagInfo()
+        newTag.idTag = tag.idTag
+        newTag.dsTag = tag.dsTag
+        newTag.cdColorTag = "#" + tagType.cdColorTypeTag
+        newTag.isSelected = false
+        newTagType.tagList.push(newTag)
+      })
+      tagTypeList.push(newTagType)
+    });
+    this.tagListByType.push(...tagTypeList)
+  }
+
+  initializeLocalInfo(locals: Array<any>){
+    this.locals = []
+    var localsList: Array<LocalInfo> = []
+    locals.forEach((local: any) => {
+      var localInfo = new LocalInfo()
+      localInfo.idLocal = local.idLocal
+      localInfo.nmLocal = local.nmLocal
+      localInfo.nmAddress = local.nmAddress
+      localInfo.cdNumberAddress = local.cdNumberAddress
+      localInfo.nmCity = local.nmCity
+      localInfo.dhBeginDay = local.dhBeginDay
+      localInfo.dhEndDay = local.dhEndDay
+      localsList.push(localInfo)
+    })
+    this.locals.push(...localsList)
+    this.totalResults = this.locals.length
+  }
+
+  async openModalAdditionalInfo(localInfo: any){
     if(!localInfo) return 
-    let workdays = [
-      "Segunda: Fechado", "Terça: Das 18:00 até as 00:30", "Quarta: Das 18:00 até as 01:00", 
-        "Quinta: Das 18:00 até as 01:00", "Sexta: Das 18:00 até as 02:00", "Sábado: Das 18:00 até as 02:00", 
-        "Domingo: Das 18:00 até as 01:00"
-    ]
-    this.dialogRef.open(ModalAdditionalInfoComponent, 
-      { 
-        data: {
-          nmLocal: localInfo.nm_local,
-          dsAddress: localInfo.ds_adress,
-          tagList: Array.from(this.tagsSelected.values()),
-          dsWorkdays: workdays
-        }
-      }
+
+    this.searchService.getLocalAdditionalInfo(localInfo.idLocal).subscribe(
+      (localAdditionalInfo) => {
+        console.log(localAdditionalInfo)
+
+        this.dialogRef.open(ModalAdditionalInfoComponent, 
+          { 
+            data: {
+              localAdditionalInfo: localAdditionalInfo.result.localAdditionalInfo
+            }
+          }
+        )
+      },
     )
-    console.log("Procurando informações adicionais - teste.")
   }
 
   openTagListModal() {
-    console.log(this.tagsSelected)
-    this.tagListByType.result.tags.forEach((element: any) => {
-      element.tagList.forEach((tag:any) => {
-        tag.isSelected = false
-      })
-    });
-    
     const dialogRefModal = this.dialogRef.open(ModalTagListComponent, 
       {
         data: {
-          tagList: this.tagListByType.result.tags,
+          tagList: this.tagListByType,
         }
       }
     )
@@ -127,18 +181,17 @@ export class SearchLocalsComponent implements OnInit {
   }
 
   clearTags(){
+    this.tagListByType.forEach(it => {
+      it.tagList.forEach(tag => {
+        tag.isSelected = false
+      })
+    })
     this.tagsSelected.clear()
   }
 
   clearFilters(){
     this.clearTags()
   }
-
-  searchLocals(){
-    console.log("Pesquisando locais - teste.")
-  }
-
-  
 
   saveLocalInUserFavorites() {
     console.log("Salvando local na lista de favoritos do usuário - teste.")

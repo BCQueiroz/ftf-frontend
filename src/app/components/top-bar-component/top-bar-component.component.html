@@ -1,21 +1,21 @@
 <nav class="topnav">
-    <a class="title-project" routerLink="/" routerLinkActive="active">
+    <a class="title-project" [class.active]="activeSection === 'home'" (click)="setActiveSection('home')">
         <span>FtF</span>
         <span class="span-project-name">Find The Fun</span>
     </a>
-    <a class="title-pages" routerLink="/procurar-locais" routerLinkActive="active">
+    <a class="title-pages" [class.active]="activeSection === 'search-locals'" (click)="setActiveSection('search-locals')">
         <span> Procurar Locais <i class="fa-solid fa-magnifying-glass-location span-icons"></i>
         </span>
     </a>
-    <a class="title-pages" routerLink="/locais-salvos" routerLinkActive="active">
+    <a class="title-pages" [class.active]="activeSection === 'saved-locals'" (click)="setActiveSection('saved-locals')">
         <span>Locais Salvos <i class="fa-solid fa-bookmark span-icons"></i>
         </span>
     </a>
-    <a class="title-pages" routerLink="/roteiros" routerLinkActive="active">
+    <a class="title-pages" [class.active]="activeSection === 'routes'" (click)="setActiveSection('routes')">
         <span>Roteiros <i class="fa-solid fa-route span-icons"></i>
         </span>
     </a>
-    <a class="title-pages" routerLink="/opcoes" routerLinkActive="active">
+    <a class="title-pages" [class.active]="activeSection === 'options'" (click)="setActiveSection('options')">
         <span>Opções <i class="fa-solid fa-user-gear span-icons"></i>
         </span>
     </a>

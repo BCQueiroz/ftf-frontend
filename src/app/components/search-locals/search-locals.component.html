@@ -5,12 +5,12 @@
             <div class="option-selector">
                 <select name="selectPeriod" id="period" (change)="onPeriodSelectorChange($event)">
                     @for (period of periodOptions; track $index) {
-                        <option [value]="period.value">{{ period.label }}</option>
+                        <option [value]="period.idPeriod">{{ period.label }}</option>
                     }
                 </select>
             </div>
             <div class="option-info">
-                <span><i class="fa-solid fa-circle-info"></i></span>
+                <span matTooltip={{tooltipsInformations.periodInformationTooltip}} [matTooltipPosition]="'below'"><i class="fa-solid fa-circle-info"></i></span>
             </div>
         </div>
         <div class="option-section">
@@ -18,12 +18,12 @@
             <div class="option-selector">
                 <select name="selectCity" id="city" (change)="onCitySelectedChange($event)">
                     @for (city of cityList; track $index) {
-                        <option [value]="city.id_city">{{ city.nm_city }}</option>
+                        <option [value]="city.idCity">{{ city.nmCity }}</option>
                     }
                 </select>
             </div>
             <div class="option-info">
-                <span><i class="fa-solid fa-circle-info"></i></span>
+                <span matTooltip={{tooltipsInformations.cityInformationTooltip}} [matTooltipPosition]="'below'"><i class="fa-solid fa-circle-info"></i></span>
             </div>
         </div>
         <div class="option-section">
@@ -35,17 +35,17 @@
             </div>
             <div class="tag-button">
                 <button (click)="openTagListModal()">
-                    <span>Nova Tag   <i class="fa-solid fa-plus tag-image"></i></span>
+                    <span>Nova Tag  <i class="fa-solid fa-plus tag-image"></i></span>
                 </button>
             </div>
             <div class="tag-info">
-                <span><i class="fa-solid fa-circle-info"></i></span>
+                <span matTooltip={{tooltipsInformations.tagSelectionInformationTooltip}} [matTooltipPosition]="'below'"><i class="fa-solid fa-circle-info"></i></span>
             </div>
         </div>
         <div class="tag-section">
             <div class="tag-list-container">
                 @for (tag of tagsSelected.values(); track $index) {
-                    <button [style.background-color]="tag.cdColorTag" 
+                    <button [style.border-color]="tag.cdColorTag" 
                         (click)="onTagSelectedClick(tag)">{{ tag.dsTag }} <span><i class="fa-solid fa-x tag-image"></i></span>
                     </button>
                 }
@@ -66,16 +66,16 @@
                 <span> Resultados:  {{totalResults}} </span>
             </div>
             <div class="total-section-info">
-                <span><i class="fa-solid fa-circle-info"></i></span>
+                <span matTooltip={{tooltipsInformations.localResultTooltip}} [matTooltipPosition]="'below'"><i class="fa-solid fa-circle-info"></i></span>
             </div>
         </div>
         <div class="itens-section">
             @for (local of locals; track $index) {
                 <div class="local-info-section">
                     <div class="local-general-info">
-                        <span>{{local.nm_local}}</span>
-                        <span>{{local.ds_adress}}</span>
-                        <span>{{local.ds_working_timeshift}}</span>
+                        <span>{{local.nmLocal}}</span>
+                        <span>{{local.nmAddress}} - {{local.nmCity}}</span>
+                        <span>Horário de Funcionamento: {{local.dhBeginDay}} - {{local.dhEndDay}}</span>
                     </div>
                     <div class="local-options">
                         <div >

@@ -2,12 +2,13 @@
     <div class="header">
         <div class="header-title">
             <p>{{localInfo.nmLocal}}</p>
+            <div class="header-close">
+                <span (click)="closeModal()">
+                    <i class="fa-solid fa-x"></i>
+                </span>
+            </div>
         </div>
-        <div class="header-close">
-            <span (click)="closeModal()">
-                <i class="fa-solid fa-x"></i>
-            </span>
-        </div>
+        
     </div>
     <div class="body">
         <div class="body-section">
@@ -35,7 +36,7 @@
                 <p>Tags do Local: </p>
                 <div class="bottom-tag-list">
                     @for (tag of localInfo.tagList; track $index) {
-                        <button [style.background-color]="tag.cdColorTag">{{ tag.dsTag }}</button>
+                        <button [style.border-color]="'#'+tag.cdColorTypeTag" (click)="testeBut(tag)">{{ tag.dsTag }}</button>
                     }
                 </div>
             </div>

@@ -9,4 +9,10 @@ import { Component } from '@angular/core';
 })
 export class TopBarComponentComponent {
 
+  activeSection: string = 'home';
+
+  setActiveSection(section: string) {
+    this.activeSection = section;
+  }
+
 }
