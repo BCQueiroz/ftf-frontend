@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { TopBarComponentComponent } from '../top-bar-component/top-bar-component.component';
 import { SearchLocalsComponent } from '../search-locals/search-locals.component';
 
@@ -9,12 +9,17 @@ import { SearchLocalsComponent } from '../search-locals/search-locals.component'
   templateUrl: './logged-area.component.html',
   styleUrl: './logged-area.component.scss'
 })
-export class LoggedAreaComponent {
+export class LoggedAreaComponent implements OnInit{
 
   isHomePage = true
+  actualPage: string = ''
 
-  changePageView(){
-    
+  ngOnInit(){
+    this.actualPage = 'home'
   }
 
+  changePageView(newPageView: string){
+    console.log(newPageView)
+    this.actualPage = newPageView
+  }
 }

@@ -32,9 +32,10 @@ export class LoginViewService {
         this.router.navigate(['/login'])
     }
 
-    startSession(idUser: string) {
+    startSession(idUser: string, nmUser: string) {
         this.localStorageManager.setLocalStorageValue("isLogged", "true")
         this.localStorageManager.setLocalStorageValue("idUser", idUser)
+        this.localStorageManager.setLocalStorageValue("nmUser", nmUser)
         this.startTimeoutSession()
         this.router.navigate(['/logged-area'])
     }

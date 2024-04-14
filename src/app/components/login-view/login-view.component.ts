@@ -40,13 +40,13 @@ export class LoginViewComponent implements OnInit {
     await this.loginService.authenticateUser(emailValidated, passwordValidated).subscribe(
       (response) => {
         if(response && response.success && response.result.userLoggedInfo) {
-          this.redirectToHomePage(response.result.userLoggedInfo.idUser.toString())
+          this.redirectToHomePage(response.result.userLoggedInfo)
         }
       }
     )
   }
 
-  redirectToHomePage(idUser: string) {
-    this.loginService.startSession(idUser)
+  redirectToHomePage(userInfo: any) {
+    this.loginService.startSession(userInfo.idUser.toString(), userInfo.nmUser.toString())
   }
 }

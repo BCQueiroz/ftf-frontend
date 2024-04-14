@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { Router } from '@angular/router';
 import { LoginViewService } from '../login-view/login-view-service';
 import { MatDialog } from '@angular/material/dialog';
@@ -17,6 +17,8 @@ export class TopBarComponentComponent implements OnInit {
   activeSection: string = 'home';
   dropdownOpen: string | null = null;
 
+  @Output() changeMenuSession = new EventEmitter<string>()
+
   constructor(private router: Router, private loginService: LoginViewService, private dialogRef : MatDialog,){
 
   }
@@ -26,6 +28,11 @@ export class TopBarComponentComponent implements OnInit {
 
   setActiveSection(section: string) {
     this.activeSection = section;
+    this.changeMenuSession.emit(section)
+  }
+
+  getActiveSession(){
+    console.log(this.activeSection)
   }
 
   endSession(){
