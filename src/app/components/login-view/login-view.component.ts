@@ -25,7 +25,7 @@ export class LoginViewComponent implements OnInit {
     this.password = ""
   }
 
-  authenticateAndLogin(){
+  async authenticateAndLogin(){
     if(!Boolean(this.email)){
       console.log("Email não informado!")
       return
@@ -37,7 +37,7 @@ export class LoginViewComponent implements OnInit {
     const emailValidated: string = this.email!
     const passwordValidated: string = this.password!
 
-    this.loginService.authenticateUser(emailValidated, passwordValidated).subscribe(
+    await this.loginService.authenticateUser(emailValidated, passwordValidated).subscribe(
       (response) => {
         if(response && response.success && response.result.userLoggedInfo) {
           this.redirectToHomePage(response.result.userLoggedInfo.idUser.toString())

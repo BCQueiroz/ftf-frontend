@@ -1,22 +1,17 @@
 <nav class="topnav">
     <a class="title-project" [class.active]="activeSection === 'home'" (click)="setActiveSection('home')">
-        <span>FtF</span>
-        <span class="span-project-name">Find The Fun</span>
+        <span>FtF</span><span class="span-project-name">Find The Fun</span>
     </a>
     <a class="title-pages" [class.active]="activeSection === 'search-locals'" (click)="setActiveSection('search-locals')">
-        <span> Procurar Locais <i class="fa-solid fa-magnifying-glass-location span-icons"></i>
-        </span>
+        <span> Procurar Locais <i class="fa-solid fa-magnifying-glass-location span-icons"></i></span>
     </a>
     <a class="title-pages" [class.active]="activeSection === 'saved-locals'" (click)="setActiveSection('saved-locals')">
-        <span>Locais Salvos <i class="fa-solid fa-bookmark span-icons"></i>
-        </span>
+        <span>Locais Salvos <i class="fa-solid fa-bookmark span-icons"></i></span>
     </a>
     <a class="title-pages" [class.active]="activeSection === 'routes'" (click)="setActiveSection('routes')">
-        <span>Roteiros <i class="fa-solid fa-route span-icons"></i>
-        </span>
+        <span>Roteiros <i class="fa-solid fa-route span-icons"></i></span>
     </a>
-    <a class="title-pages" [class.active]="activeSection === 'options'" (click)="setActiveSection('options')">
-        <span>Opções <i class="fa-solid fa-user-gear span-icons"></i>
-        </span>
+    <a class="title-pages" [class.active]="activeSection === 'options'" (click)="endSession()">
+        <span>Encerrar Sessão <i class="fa-solid fa-door-open"></i></span>
     </a>
 </nav>

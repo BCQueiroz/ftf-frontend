@@ -18,3 +18,12 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
     display: flex;
     flex-direction: column;
 }
+
+.modal-mini {
+    border-radius: 15px;
+    border: 1px solid;
+    width: 400px;
+    height: 200px;
+    display: flex;
+    flex-direction: column;
+}

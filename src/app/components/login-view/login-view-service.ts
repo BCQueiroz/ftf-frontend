@@ -13,8 +13,8 @@ export class LoginViewService {
 
     private userEnvironment = `http://localhost:3000/api/auth`
     private loginUrl = "/user-login"
-    private timeoutSession: any;
-    private readonly TIMEOUT_DURATION = 30000;
+    private timeoutSession: any
+    private readonly TIMEOUT_DURATION = 300000 // 5 minutos
 
     constructor(private http: HttpClient, private localStorageManager: LocalStorageManager, private router: Router) { 
     }
@@ -33,16 +33,15 @@ export class LoginViewService {
     }
 
     startSession(idUser: string) {
-        console.log(idUser)
         this.localStorageManager.setLocalStorageValue("isLogged", "true")
         this.localStorageManager.setLocalStorageValue("idUser", idUser)
         this.startTimeoutSession()
-        this.router.navigate(['/search-locals'])
+        this.router.navigate(['/logged-area'])
     }
 
     private startTimeoutSession() {
         this.timeoutSession = setTimeout(() => {
-          this.endSession()
+          //this.endSession()
           console.log('Usuário deslogado devido à inatividade.');
         }, this.TIMEOUT_DURATION);
     }
