@@ -1,0 +1,67 @@
+.login-container {
+    width: 100%; 
+    height: 100%;
+    background-color: #F87C56
+}
+
+.login-container-position{
+    height: 100%; 
+    display: flex; 
+    justify-content: center; 
+    align-items: center;
+}
+
+.login-box {
+    height: 30%; 
+    width: 30%; 
+    border: 1px solid; 
+    border-radius: 10px; 
+    background-color: white;
+    display: flex; 
+    flex-direction: column; 
+    justify-content: center; 
+    align-items: flex-start; 
+    gap: 5%;
+}
+
+.title-project {
+    color: #F87C56;
+    text-align: center;
+    text-decoration: none;
+    height: 45%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-size: 25px;
+    cursor: default;
+}
+
+.span-project-name {
+    font-size: 20px;
+}
+
+.input-informations {
+    display: flex; 
+    flex-direction: row; 
+    justify-content: space-evenly;
+    width: 100%;
+    height: 10%;
+}
+
+.input-informations input {
+    width: 60%;
+}
+
+.button-login {
+    height: 35%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.button-login button {
+    border-radius: 5px;
+}

@@ -15,7 +15,6 @@ export class ModalAdditionalInfoComponent implements OnInit{
   localInfo: LocalAdditionalInfo = new LocalAdditionalInfo()
 
   constructor(@Inject(MAT_DIALOG_DATA) public data: any, private dialogRef : MatDialogRef<ModalAdditionalInfoComponent>) {
-    console.log(data)
     this.localInfo = this.initializeLocalAdditionalInfo(data.localAdditionalInfo)
   }
 
@@ -55,9 +54,5 @@ export class ModalAdditionalInfoComponent implements OnInit{
       workdaysFormatted.push(`${nmDay}: ${timeShift}`)
     })
     return workdaysFormatted
-  }
-
-  testeBut(tag: any) {
-    console.log(tag)
   }
 }

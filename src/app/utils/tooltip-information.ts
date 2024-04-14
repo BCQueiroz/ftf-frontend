@@ -1,6 +1,5 @@
 
 export class TooltipInformation {
-
     periodInformationTooltip = "Selecione aqui para qual período do dia deseja procurar locais em funcionamento. Ou então, selecione a opção 'Qualquer Período' para desconsiderar esse filtro."
     cityInformationTooltip = "Selecione aqui em qual cidade cadastrada no nosso sistema deseja procurar um local. Ou então, selecione a opção 'Qualquer Cidade' para desconsiderar esse filtro."
     tagSelectionInformationTooltip = "Cada tag é referente a uma característica que algum lugar pode apresentar, como ter música ao vivo ou não. Escolha quais tags/características você procura em um lugar, e então iremos procurar lugares que tenham todas as características solicitadas por você."

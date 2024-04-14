@@ -35,6 +35,7 @@ $height-param: 20vh;
 }
 
 .title-pages {
+    position: relative;
     float: left;
     color: #000000;
     text-align: center;
@@ -54,4 +55,21 @@ $height-param: 20vh;
 
 .span-project-name{
     font-size: 30px;
+}
+
+.dropdown {
+    position: relative;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
 }

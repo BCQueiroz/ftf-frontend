@@ -36,7 +36,7 @@
                 <p>Tags do Local: </p>
                 <div class="bottom-tag-list">
                     @for (tag of localInfo.tagList; track $index) {
-                        <button [style.border-color]="'#'+tag.cdColorTypeTag" (click)="testeBut(tag)">{{ tag.dsTag }}</button>
+                        <button [style.border-color]="'#'+tag.cdColorTypeTag">{{ tag.dsTag }}</button>
                     }
                 </div>
             </div>

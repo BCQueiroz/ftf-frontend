@@ -1,0 +1,21 @@
+<div class="login-container">
+    <div class="login-container-position">
+        <div class="login-box"> 
+            <div class="title-project">
+                <span>FtF</span>
+                <span class="span-project-name">Find The Fun</span>
+            </div>
+            <div class="input-informations">
+                <label for="email">Email: </label>
+                <input type="text" id="email" name="email" [(ngModel)]="email">
+            </div>
+            <div class="input-informations">
+                <label for="password">Senha: </label>
+                <input type="password" id="password" name="password" [(ngModel)]="password">
+            </div>
+            <div class="button-login">
+                <button (click)="authenticateAndLogin()">Entrar</button>
+            </div>
+        </div>
+    </div>
+</div>
