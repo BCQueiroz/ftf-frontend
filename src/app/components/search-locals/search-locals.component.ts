@@ -3,7 +3,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { ModalAdditionalInfoComponent } from '../modal-additional-info/modal-additional-info.component';
 import { ModalTagListComponent } from '../modal-tag-list/modal-tag-list.component';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
-import { SearchLocalsService } from './search-locals-service';
+import { SearchLocalsService } from '../../services/search-locals-service';
 import { TagTypeInfo } from '../../interfaces/tagTypeInfo';
 import { TagInfo } from '../../interfaces/tagInfo';
 import { CityInfo } from '../../interfaces/cityInfo';
@@ -11,12 +11,15 @@ import { LocalInfo } from '../../interfaces/localInfo';
 import { MatTooltip, MatTooltipModule } from '@angular/material/tooltip'
 import { TooltipInformation } from '../../utils/tooltip-information';
 import { FormsModule } from '@angular/forms';
+import { SavedLocalsService } from '../../services/saved-locals-service';
+import { LocalStorageManager } from '../../utils/local-storage-manager';
+import { response } from 'express';
 
 @Component({
   selector: 'app-search-locals',
   standalone: true,
   imports: [ HttpClientModule, MatTooltipModule, FormsModule ],
-  providers :  [ SearchLocalsService ],
+  providers :  [ SearchLocalsService, SavedLocalsService, LocalStorageManager ],
   templateUrl: './search-locals.component.html',
   styleUrl: './search-locals.component.scss'
 })
@@ -40,7 +43,12 @@ export class SearchLocalsComponent implements OnInit {
   locals: Array<LocalInfo> = []
   tooltipsInformations = new TooltipInformation()
 
-  constructor(private dialogRef : MatDialog, private http: HttpClient, private searchService: SearchLocalsService){}
+  constructor(private dialogRef : MatDialog, 
+              private http: HttpClient, 
+              private searchService: SearchLocalsService,
+              private savedLocalsService: SavedLocalsService,
+              private localStorageManager: LocalStorageManager){
+  }
 
   async ngOnInit(): Promise<void> {
     await this.searchService.getAllTags().subscribe(
@@ -193,7 +201,17 @@ export class SearchLocalsComponent implements OnInit {
     this.clearTags()
   }
 
-  saveLocalInUserFavorites() {
+  async saveLocalInUserFavorites(localInfo: any) {
     console.log("Salvando local na lista de favoritos do usuário - teste.")
+    if(!localInfo.idLocal) return
+    const idLocal = localInfo.idLocal
+    const idUser = this.localStorageManager.getLocalStorageValue("idUser")
+    if(!Boolean(idUser)) return
+    
+    await this.savedLocalsService.saveNewLocalInUserList(Number(idUser), idLocal).subscribe(
+      (response) => {
+        console.log(response)
+      }
+    )
   }
 }

@@ -1,16 +1,16 @@
 <app-top-bar-component (changeMenuSession)="changePageView($event)"></app-top-bar-component>
 @if(actualPage == 'home'){
-    <h1>Bem vindo!</h1>
+    <app-home-area></app-home-area>
 }
 @else if(actualPage == 'search-locals'){
     <app-search-locals></app-search-locals>
 } 
 @else if(actualPage == 'saved-locals'){
-    <h1>Locais salvos</h1>
+    <app-saved-locals></app-saved-locals>
 }
 @else if(actualPage == 'routes') {
     <h1>Roteiros!</h1>
 }
 @else {
-    <h1>Bem vindo!</h1>
+    <app-home-area></app-home-area>
 }

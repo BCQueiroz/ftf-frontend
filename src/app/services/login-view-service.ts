@@ -2,7 +2,7 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Observable } from "rxjs";
-import { LocalStorageManager } from "../../utils/local-storage-manager";
+import { LocalStorageManager } from "../utils/local-storage-manager";
 import { Router } from "@angular/router";
 
 @Injectable({
