@@ -30,9 +30,9 @@ export class SearchLocalsService {
         return this.http.get<any>(`${this.searchUrl}/${this.getCitiesUrl}`)
     }
 
-    searchLocals(idPeriod: any, idCity: any, idTagList: Array<number>): Observable<any> {
+    searchLocals(idPeriod: any, idCity: any, idTagList: Array<number>, idUser: number): Observable<any> {
         var bodyRequisition = {
-            idPeriod, idCity, idTagList
+            idPeriod, idCity, idTagList, idUser
         }
         return this.http.post<any>(`${this.searchUrl}/${this.getLocalsUrl}`, bodyRequisition)
     }

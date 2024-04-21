@@ -50,9 +50,16 @@ export class ModalAdditionalInfoComponent implements OnInit{
     var workdaysFormatted: Array<string> = []
     infoWorkdays.forEach((info: any) => {
       var nmDay = info.nmDay
-      var timeShift = info.dhBeginDay.length != 0 && info.dhEndDay.length != 0 ? `Das ${info.dhBeginDay} até às ${info.dhEndDay}` : "Fechado"
+      var timeShift = info.dhBeginDay.length != 0 && info.dhEndDay.length != 0 ? this.formatWorkshift(info.dhBeginDay, info.dhEndDay) : "Fechado"
       workdaysFormatted.push(`${nmDay}: ${timeShift}`)
     })
     return workdaysFormatted
+  }
+
+  formatWorkshift(dhBeginDay: string, dhEndDay: string): string {
+    if(dhBeginDay == "-" && dhEndDay == "-") return "Aberto o dia todo"
+    if(dhBeginDay == "-" && dhEndDay != "-") return `Até às ${dhEndDay}`
+    if(dhBeginDay != "-" && dhEndDay == "-") return `A partir das ${dhBeginDay}`
+    return `Das ${dhBeginDay} até às ${dhEndDay}`
   }
 }
