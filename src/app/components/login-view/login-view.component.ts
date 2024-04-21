@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { LoginViewService } from './login-view-service';
+import { LoginViewService } from '../../services/login-view-service';
 import { HttpClientModule } from '@angular/common/http';
 import { Router } from '@angular/router';
 

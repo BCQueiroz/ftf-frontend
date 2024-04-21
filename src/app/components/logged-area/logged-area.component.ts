@@ -1,11 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { TopBarComponentComponent } from '../top-bar-component/top-bar-component.component';
 import { SearchLocalsComponent } from '../search-locals/search-locals.component';
+import { HomeAreaComponent } from '../home-area/home-area.component';
+import { SavedLocalsComponent } from '../saved-locals/saved-locals.component';
 
 @Component({
   selector: 'app-logged-area',
   standalone: true,
-  imports: [ TopBarComponentComponent, SearchLocalsComponent ],
+  imports: [ TopBarComponentComponent, SearchLocalsComponent, HomeAreaComponent, SavedLocalsComponent ],
   templateUrl: './logged-area.component.html',
   styleUrl: './logged-area.component.scss'
 })

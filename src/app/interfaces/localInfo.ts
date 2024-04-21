@@ -8,5 +8,6 @@ export class LocalInfo {
     nmAddress: string = ""
     nmCity: string = ""
     nmLocal: string = ""
+    dsWorkshift: string = ""
     localAdditionalInfo: LocalAdditionalInfo = new LocalAdditionalInfo()
 }

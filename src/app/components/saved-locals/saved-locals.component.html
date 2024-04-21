@@ -1,0 +1,29 @@
+<div class="section-right">
+    <div class="total-section">
+        <div class="total-section-result">
+            <span> Resultados:  {{totalResults}} </span>
+        </div>
+        <div class="total-section-info">
+            <span matTooltip={{tooltipInformation.localsSavedTooltip}} [matTooltipPosition]="'below'"><i class="fa-solid fa-circle-info"></i></span>
+        </div>
+    </div>
+    <div class="itens-section">
+        @for (local of userSavedLocals; track $index) {
+            <div class="local-info-section">
+                <div class="local-general-info">
+                    <span>{{local.nmLocal}}</span>
+                    <span>{{local.nmAddress}} - {{local.nmCity}}</span>
+                    <span>Horário de Funcionamento: {{local.dsWorkshift}} </span>
+                </div>
+                <div class="local-options">
+                    <div >
+                        <span (click)="openModalAdditionalInfo(local)"><i class="fa-solid fa-plus"></i>  Informações</span>
+                    </div>
+                    <div >
+                        <span (click)="removeSavedLocal(local)"><i class="fa-solid fa-x tag-image"></i> Remover Local</span>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>
