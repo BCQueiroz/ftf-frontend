@@ -7,7 +7,8 @@ import { Observable } from "rxjs";
 })
 export class SavedLocalsService {
 
-    private savedLocalsUrl = `http://localhost:3000/api/saved`
+    private ambientUrl = 'https://ftf-search-ws.vercel.app/' //"http://localhost:3000/" //
+    private savedLocalsUrl = `${this.ambientUrl}api/saved`
     private saveLocalInUserListApi = 'save-new-local-by-user'
     private getUserLocalsSavedApi = 'get-locals-saved-by-user'
     private removeItemFromUserSavedLocalsApi = 'remove-item-from-saved-locals'
