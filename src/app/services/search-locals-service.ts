@@ -8,7 +8,7 @@ import { Observable } from "rxjs";
 
 export class SearchLocalsService {
 
-    private ambientUrl = 'https://ftf-search-ws.vercel.app/'  // "http://localhost:3000/"
+    private ambientUrl = "http://localhost:3000/" //'https://ftf-search-ws.vercel.app/'  // 
     private searchUrl = `${this.ambientUrl}api/search`
     private getCitiesUrl = "get-all-cities"
     private getTagsUrl = "get-all-tags"

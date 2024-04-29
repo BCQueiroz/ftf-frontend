@@ -221,9 +221,7 @@ export class SearchLocalsComponent implements OnInit {
     if(!Boolean(idUser)) return
     
     await this.savedLocalsService.saveNewLocalInUserList(Number(idUser), idLocal).subscribe(
-      (response) => {
-        console.log(response)
-      }
+      (response) => {}
     )
   }
 }

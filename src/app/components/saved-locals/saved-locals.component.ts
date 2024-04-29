@@ -8,6 +8,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { ModalAdditionalInfoComponent } from '../modal-additional-info/modal-additional-info.component';
 import { ModalConfirmComponent } from '../modal-confirm/modal-confirm.component';
 import { TooltipInformation } from '../../utils/tooltip-information';
+import { TagInfo } from '../../interfaces/tagInfo';
 
 @Component({
   selector: 'app-saved-locals',
@@ -58,10 +59,24 @@ export class SavedLocalsComponent implements OnInit {
       localInfo.dhBeginDay = local.dhBeginDay
       localInfo.dhEndDay = local.dhEndDay
       localInfo.dsWorkshift = this.formatWorkshift(local.dhBeginDay, local.dhEndDay)
+      localInfo.tagList.push(...this.initializeTags(local.tagsInfo))
       localsList.push(localInfo)
     })
     this.userSavedLocals.push(...localsList)
     this.totalResults = this.userSavedLocals.length
+  }
+
+  initializeTags(tagList: Array<any>): Array<TagInfo> {
+    var tagListFormatted: Array<TagInfo> = []
+    if(tagList.length == 0) return []
+    tagList.forEach(it => {
+      var tagInfo = new TagInfo()
+      tagInfo.idTag = it.idTag
+      tagInfo.dsTag = it.dsTag
+      tagInfo.cdColorTag = it.cdColorTypeTag
+      tagListFormatted.push(tagInfo)
+    })
+    return tagListFormatted
   }
 
   formatWorkshift(dhBeginDay: string, dhEndDay: string): string {

@@ -11,7 +11,7 @@ import { Router } from "@angular/router";
 
 export class LoginViewService {
 
-    private ambientUrl = 'https://ftf-search-ws.vercel.app/' // "http://localhost:3000/"
+    private ambientUrl = "http://localhost:3000/" // 'https://ftf-search-ws.vercel.app/' // 
     private userEnvironment = `${this.ambientUrl}api/auth`
     private loginUrl = "/user-login"
     private timeoutSession: any

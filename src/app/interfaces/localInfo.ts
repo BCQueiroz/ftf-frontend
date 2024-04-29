@@ -1,4 +1,4 @@
-import { LocalAdditionalInfo } from "./localAdditionalInfo"
+import { TagInfo } from "./tagInfo"
 
 export class LocalInfo {
     idLocal: number = 0
@@ -9,5 +9,5 @@ export class LocalInfo {
     nmCity: string = ""
     nmLocal: string = ""
     dsWorkshift: string = ""
-    localAdditionalInfo: LocalAdditionalInfo = new LocalAdditionalInfo()
+    tagList: Array<TagInfo> = []
 }
