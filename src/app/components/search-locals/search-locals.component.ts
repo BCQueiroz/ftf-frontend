@@ -148,6 +148,7 @@ export class SearchLocalsComponent implements OnInit {
       localInfo.nmCity = local.nmCity
       localInfo.dhBeginDay = local.dhBeginDay
       localInfo.dhEndDay = local.dhEndDay
+      localInfo.isSaved = local.isSaved
       localInfo.dsWorkshift = this.formatWorkshift(local.dhBeginDay, local.dhEndDay)
       localsList.push(localInfo)
     })
@@ -221,7 +222,9 @@ export class SearchLocalsComponent implements OnInit {
     if(!Boolean(idUser)) return
     
     await this.savedLocalsService.saveNewLocalInUserList(Number(idUser), idLocal).subscribe(
-      (response) => {}
+      (response) => {
+        localInfo.isSaved = true
+      }
     )
   }
 }

@@ -9,5 +9,6 @@ export class LocalInfo {
     nmCity: string = ""
     nmLocal: string = ""
     dsWorkshift: string = ""
+    isSaved: boolean = false
     tagList: Array<TagInfo> = []
 }
