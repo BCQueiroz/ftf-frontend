@@ -1,26 +1,40 @@
-<div class="section-right">
-    <div class="total-section">
-        <div class="total-section-result">
-            <span> Resultados:  {{totalResults}} </span>
+<div class="section">
+    <div class="header-section">
+        <div class="header-section-result">
+            <span> Locais Salvos:  </span>
         </div>
-        <div class="total-section-info">
-            <span matTooltip={{tooltipInformation.localsSavedTooltip}} [matTooltipPosition]="'below'"><i class="fa-solid fa-circle-info"></i></span>
+        <div class="header-section-tags">
+            <span>Tags: </span>
+        </div>
+        <div class="header-section-info">
+            <span matTooltip={{tooltipInformation.localsSavedTooltip}} [matTooltipPosition]="'below'">Opções: <i class="fa-solid fa-circle-info"></i></span>
         </div>
     </div>
     <div class="itens-section">
         @for (local of userSavedLocals; track $index) {
             <div class="local-info-section">
                 <div class="local-general-info">
-                    <span>{{local.nmLocal}}</span>
+                    <span class="local-general-info-name">{{local.nmLocal}}</span>
                     <span>{{local.nmAddress}} - {{local.nmCity}}</span>
                     <span>Horário de Funcionamento: {{local.dsWorkshift}} </span>
                 </div>
-                <div class="local-options">
-                    <div >
-                        <span (click)="openModalAdditionalInfo(local)"><i class="fa-solid fa-plus"></i>  Informações</span>
+                <div class="local-tags-display">
+                    <div class="local-tag-list">
+                        @for (tag of local.tagList; track $index) {
+                            <button [style.border-color]="'#'+tag.cdColorTag">{{ tag.dsTag }}</button>
+                        }
                     </div>
-                    <div >
-                        <span (click)="removeSavedLocal(local)"><i class="fa-solid fa-x tag-image"></i> Remover Local</span>
+                </div>
+                <div class="local-options">
+                    <div class="local-options-session">
+                        <button>
+                            <span (click)="openModalAdditionalInfo(local)"><i class="fa-solid fa-plus"></i> Informações </span>
+                        </button>
+                    </div>
+                    <div class="local-options-session">
+                        <button>
+                            <span (click)="removeSavedLocal(local)"><i class="fa-solid fa-x tag-image"></i> Remover Local </span>
+                        </button>
                     </div>
                 </div>
             </div>

@@ -39,10 +39,10 @@ export class ModalAdditionalInfoComponent implements OnInit{
   }
 
   formatPriceRange(minPrice: string, maxPrice: string): string {
-    if(Boolean(minPrice) && !Boolean(maxPrice)) return `À partir de R$${minPrice}`
-    if(!Boolean(minPrice) && Boolean(maxPrice)) return `Até R$${maxPrice}`
-    if(Boolean(minPrice) && Boolean(maxPrice)) return `Entre R$${minPrice} e R$${maxPrice}`
-    if(!Boolean(minPrice) || !Boolean(maxPrice)) return "-"
+    if(minPrice != "0" && maxPrice == "0") return `À partir de R$${minPrice}`
+    if(minPrice == "0" && maxPrice != "0") return `Até R$${maxPrice}`
+    if(minPrice != "0" && maxPrice != "0") return `Entre R$${minPrice} e R$${maxPrice}`
+    if(minPrice == "0" && maxPrice == "0") return "Sem faixa de preço definida."
     return "-"
   }
 

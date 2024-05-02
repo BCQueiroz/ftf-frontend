@@ -30,7 +30,7 @@
 
 .option-description {
     width: 34%;
-    font-size: 18px;
+    font-size: 22px;
     display: flex;
     align-items: center;
     justify-content: flex-start;
@@ -44,7 +44,7 @@
 }
 
 .option-info {
-    font-size: 20px;
+    font-size: 22px;
     width: 20%;
     display: flex;
     align-items: center;
@@ -56,7 +56,7 @@
 }
 
 .option-span-button {
-    font-size: 18px;
+    font-size: 22px;
     width: 23%;
     display: flex;
     align-items: center;
@@ -73,14 +73,14 @@
 
 .tag-description {
     width: 30%;
-    font-size: 18px;
+    font-size: 22px;
     display: flex;
     align-items: center;
     justify-content: flex-start;
 }
 
 .tag-button {
-    font-size: 18px;
+    font-size: 22px;
     width: 25%;
     display: flex;
     align-items: center;
@@ -156,6 +156,7 @@
     align-items: center;
     display: flex;
     justify-content: space-between;
+    font-size: 20px;
 }
 
 .total-section-result {
@@ -202,6 +203,10 @@
     padding: 3% 2% 3% 2%;
 }
 
+.local-general-info-name {
+    font-size: 20px;
+}
+
 .local-general-info span {
     margin: 0 0 1% 0;
 }
@@ -216,8 +221,12 @@
     height: 100%;
 }
 
-.local-options span{
+.local-options-span{
     cursor: pointer;
+}
+
+.local-options-saved-local {
+    cursor: default;
 }
 
 select {

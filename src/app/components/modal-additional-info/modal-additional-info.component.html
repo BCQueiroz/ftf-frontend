@@ -16,7 +16,11 @@
                 <div class="upper-left-section">
                     <p>Telefone: {{localInfo.dsPhone}}</p>
                     <p>Endereço: {{localInfo.dsAddress}}</p>
-                    <p>Site: {{localInfo.dsSite}}</p>
+                    <p>Site: @if(localInfo.dsSite != '-'){
+                        <a [href]="localInfo.dsSite" target="_blank">{{localInfo.dsSite}}</a>
+                    } @else {
+                        {{localInfo.dsSite}}
+                    } </p>
                     <p>Faixa de Preço Aproximada: {{localInfo.dsAproxPrice}}</p>
                     <p>Resumo do Estabelecimento: </p>
                     <div class="upper-left-description">

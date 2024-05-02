@@ -1,34 +1,44 @@
-.section-right {
+$first-session: 40%;
+$second-session: 40%;
+$third-session: 20%;
+
+.section {
     background-color: #E6E9EF;
-    height: 100%;
+    height: 80vh;
 }
 
-.total-section {
+.header-section {
     width: 100%;
     border-bottom: 1px solid ;
     height: 10%;
     align-items: center;
     display: flex;
     justify-content: space-between;
+    font-size: 20px;
 }
 
-.total-section-result {
-    width: 70%;
-    padding: 0% 0% 0% 2%;
+.header-section-result {
+    width: $first-session;
     align-items: center;
     display: flex;
-    justify-content: flex-start;
+    justify-content: center;
 }
 
-.total-section-info {
-    width: 30%;
-    display: flex;
-    justify-content: flex-end;
+.header-section-tags {
+    width: $second-session;
     align-items: center;
-    padding: 0% 2% 0% 0%;
+    display: flex;
+    justify-content: center;
 }
 
-.total-section-info span {
+.header-section-info {
+    width: $third-session;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.header-section-info span {
     cursor: pointer;
 }
 
@@ -52,12 +62,48 @@
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    width: 75%;
-    padding: 3% 2% 3% 2%;
-}
+    justify-content: center;
+    width: $first-session;
+    padding: 1% 0% 1% 2%;
+} 
 
 .local-general-info span {
     margin: 0 0 1% 0;
+}
+
+.local-general-info-name {
+    font-size: 20px;
+}
+
+.local-tags-display {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: $second-session;
+    padding: 1% 0% 1% 2%;
+}
+
+.local-tag-list {
+    width: 90%;
+    height: 50%;
+    margin-left: 3%;
+    margin-right: 5%;
+    border: 1px #D9D9D9;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px;
+    overflow: auto;
+    border-radius: 10px;
+    padding: 1% 0% 0% 1%;
+}
+
+.local-tag-list button {
+    flex-basis: calc(30% - 10px);
+    margin-bottom: 5px;
+    border-radius: 10px;
 }
 
 .local-options {
@@ -65,9 +111,21 @@
     flex-direction: column;
     align-items: center;
     justify-content: space-evenly;
-    width: 25%;
-    border-left: 1px solid;
+    width: $third-session;
     height: 100%;
+}
+
+.local-options-session {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.local-options-session button {
+    width: 60%;
+    border-radius: 10px;
+    border: 1px solid;
+    font-size: 14px;
 }
 
 .local-options span{

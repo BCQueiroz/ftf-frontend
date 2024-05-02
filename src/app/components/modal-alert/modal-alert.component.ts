@@ -3,13 +3,13 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 
 @Component({
-  selector: 'app-modal-confirm',
+  selector: 'app-modal-alert',
   standalone: true,
   imports: [ CommonModule ],
-  templateUrl: './modal-confirm.component.html',
-  styleUrl: './modal-confirm.component.scss'
+  templateUrl: './modal-alert.component.html',
+  styleUrl: './modal-alert.component.scss'
 })
-export class ModalConfirmComponent {
+export class ModalAlertComponent {
 
   message: string = ""
 
@@ -17,15 +17,8 @@ export class ModalConfirmComponent {
     this.message = data.message
   }
 
-  confirmLogout(){
-    this.confirmAction(true)
+  confirmAction(){
+    this.dialogRef.close()
   }
 
-  negateLogout(){
-    this.confirmAction(false)
-  }
-
-  confirmAction(isLogout: boolean){
-    this.dialogRef.close(isLogout)
-  }
 }

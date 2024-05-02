@@ -73,16 +73,20 @@
             @for (local of locals; track $index) {
                 <div class="local-info-section">
                     <div class="local-general-info">
-                        <span>{{local.nmLocal}}</span>
+                        <span class="local-general-info-name">{{local.nmLocal}}</span>
                         <span>{{local.nmAddress}} - {{local.nmCity}}</span>
                         <span>Horário de Funcionamento: {{local.dsWorkshift}} </span>
                     </div>
                     <div class="local-options">
-                        <div >
-                            <span (click)="openModalAdditionalInfo(local)"><i class="fa-solid fa-plus"></i>  Informações</span>
+                        <div>
+                            <span class="local-options-span" (click)="openModalAdditionalInfo(local)"><i class="fa-solid fa-plus"></i>  Informações</span>
                         </div>
-                        <div >
-                            <span (click)="saveLocalInUserFavorites(local)"><i class="fa-solid fa-bookmark"></i>  Salvar Local</span>
+                        <div>
+                            @if(local.isSaved){
+                                <span class="local-options-saved-local"><i class="fa-solid fa-check"></i> Local Salvo</span>
+                            } @else {
+                                <span class="local-options-span" (click)="saveLocalInUserFavorites(local)"><i class="fa-solid fa-bookmark"></i>  Salvar Local</span>
+                            }
                         </div>
                     </div>
                 </div>
