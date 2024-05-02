@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { LoginViewService } from '../../services/login-view-service';
 import { MatDialog } from '@angular/material/dialog';
 import { ModalConfirmComponent } from '../modal-confirm/modal-confirm.component';
+import { ModalAlertComponent } from '../modal-alert/modal-alert.component';
 
 @Component({
   selector: 'app-top-bar-component',
@@ -27,12 +28,17 @@ export class TopBarComponentComponent implements OnInit {
   }
 
   setActiveSection(section: string) {
-    this.activeSection = section;
-    this.changeMenuSession.emit(section)
-  }
-
-  getActiveSession(){
-    console.log(this.activeSection)
+    if(section == "routes"){
+      const dialogRef = this.dialogRef.open(ModalAlertComponent, 
+        { 
+          data : {
+            message: "Tela de Roteiros está em desenvolvimento!"
+          }
+        })
+    } else {
+      this.activeSection = section;
+      this.changeMenuSession.emit(section)
+    }
   }
 
   endSession(){

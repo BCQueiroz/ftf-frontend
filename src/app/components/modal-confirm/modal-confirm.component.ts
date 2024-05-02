@@ -28,5 +28,4 @@ export class ModalConfirmComponent {
   confirmAction(isLogout: boolean){
     this.dialogRef.close(isLogout)
   }
-
 }
